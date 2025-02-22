@@ -9,23 +9,25 @@ interface HeaderProps {
 
 const HeaderComponent: React.FC<HeaderProps> = ({ isHomePage }) => {
   return (
-    <header>
-      <img src={museumLogoLight} alt="Museum icon with museum title" />
-      <nav>
-        <ul>
-          {!isHomePage && (
-            <li>
-              <img src={homeIcon} alt="Home icon" />
-              <span>Home</span>
-            </li>
-          )}
+    <header className="header">
+      <div className="wrapper">
+        <img src={museumLogoLight} alt="Museum icon with museum title" />
+        <nav className="header__nav">
+          <ul className="header__navlist">
+            {!isHomePage && (
+              <li className="header__navlist__link">
+                <img src={homeIcon} alt="Home icon" />
+                <span>Home</span>
+              </li>
+            )}
 
-          <li>
-            <img src={bookmarkIcon} alt="Home icon" />
-            <span>Favorites</span>
-          </li>
-        </ul>
-      </nav>
+            <li className="header__navlist__link">
+              <img src={bookmarkIcon} alt="Home icon" />
+              <span>Favorites</span>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 };

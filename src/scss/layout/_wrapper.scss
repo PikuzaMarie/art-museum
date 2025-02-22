@@ -1,0 +1,23 @@
+@use '../abstracts/' as a;
+
+.wrapper {
+  position: relative;
+  @include a.flex-container($align: center, $justify: center);
+  width: 100%;
+  max-width: a.rem(1320);
+  margin: 0 auto;
+  padding: 0 a.rem(16);
+
+  & .title {
+    width: a.rem(684);
+    font-size: a.rem(64);
+    font-weight: 700;
+    line-height: 1.25;
+    text-align: center;
+    text-transform: capitalize;
+
+    &-accent {
+      color: a.$color-accent-orange;
+    }
+  }
+}
