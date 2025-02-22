@@ -1,0 +1,27 @@
+@use '../abstracts/' as a;
+
+.section {
+  @include a.flex-container(
+    $direction: column,
+    $justify: center,
+    $align: center,
+    $gap: a.rem(32)
+  );
+
+  &__heading {
+    @include a.flex-container($direction: column);
+    text-align: center;
+  }
+
+  &__subtitle {
+    font-size: a.rem(16);
+    font-weight: 400;
+
+    color: a.$color-light-orange;
+  }
+
+  &__title {
+    font-size: a.rem(32);
+    font-weight: 400;
+  }
+}
