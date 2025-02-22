@@ -1,6 +1,8 @@
+@use 'functions' as f;
+
 $breakpoints: (
-  'small': f.em(420),
-  'large': f.em(1200),
+  'small': f.rem(420),
+  'large': f.rem(1200),
 );
 
 @mixin breakpoint($size) {
@@ -13,4 +15,19 @@ $breakpoints: (
   @media (width < map.get($breakpoints, $size)) {
     @content;
   }
+}
+
+@mixin flex-container(
+  $direction: row,
+  $justify: flex-start,
+  $align: stretch,
+  $wrap: nowrap,
+  $gap: 0
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+  gap: $gap;
 }
