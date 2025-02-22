@@ -21,3 +21,12 @@
     }
   }
 }
+
+main .wrapper {
+  @include a.flex-container(
+    $direction: column,
+    $justify: center,
+    $align: center,
+    $gap: a.rem(120)
+  );
+}
