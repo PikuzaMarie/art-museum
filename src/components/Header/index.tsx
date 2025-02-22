@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import museumLogoLight from '../../assets/logos/museum-logo-light.svg';
 import homeIcon from '../../assets/icons/home-icon.svg';
-import bookmarkIcon from '../../assets/icons/bookmark-icon.svg';
+import bookmarkIcon from '../../assets/icons/bookmark-light-orange-icon.svg';
 
 interface HeaderProps {
   isHomePage: boolean;
@@ -22,8 +22,8 @@ const HeaderComponent: React.FC<HeaderProps> = ({ isHomePage }) => {
             )}
 
             <li className="header__navlist__link">
-              <img src={bookmarkIcon} alt="Home icon" />
-              <span>Favorites</span>
+              <img src={bookmarkIcon} alt="Bookmark icon" />
+              <span>Your favorites</span>
             </li>
           </ul>
         </nav>

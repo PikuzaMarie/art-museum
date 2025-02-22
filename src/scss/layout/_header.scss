@@ -29,6 +29,8 @@
     &__link {
       @include a.flex-container($justify: center, $gap: a.rem(4));
 
+      font-weight: 300;
+      font-size: a.rem(18);
       list-style-type: none;
       color: a.$color-white;
     }
