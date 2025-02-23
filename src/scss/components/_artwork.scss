@@ -61,3 +61,30 @@
     font-weight: 700;
   }
 }
+
+.artwork.small {
+  @include a.flex-container($align: center, $gap: a.rem(16));
+  padding: a.rem(13) a.rem(16);
+  width: a.rem(416);
+  height: a.rem(130);
+
+  border: a.rem(1) solid a.$color-card-border;
+  background-color: a.$color-white;
+
+  .artwork__image-container {
+    max-width: a.rem(80);
+    height: a.rem(80);
+  }
+
+  .artwork__heading {
+    max-width: a.rem(219);
+  }
+
+  .artwork__description {
+    gap: a.rem(16);
+    bottom: 0;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+  }
+}
