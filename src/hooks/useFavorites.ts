@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Artwork } from '../types';
+import toast from 'react-hot-toast';
 
 export function useFavorites() {
   const [favoriteArtworks, setFavoriteItems] = useState<Artwork[]>([]);
@@ -24,6 +25,7 @@ export function useFavorites() {
     if (!sessionStorage.getItem(artworkId)) {
       sessionStorage.setItem(artworkId, JSON.stringify(artwork));
       setFavoriteItems(prevItems => [...prevItems, artwork]);
+      toast.success('Added artwork to favorites', { icon: '💖' });
     }
   };
 
@@ -32,6 +34,7 @@ export function useFavorites() {
     setFavoriteItems(prevItems =>
       prevItems.filter(item => item.id !== artworkId),
     );
+    toast.error('Removed artwork from favorites', { icon: '💔' });
   };
 
   return {
