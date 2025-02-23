@@ -5,6 +5,7 @@ import { SectionLayout } from '../../components/SectionLayout';
 import { fetchAvailableArtworks } from '../../api';
 import { Loader } from '../../components/Loader';
 import { Pagination } from '../../components/Pagination';
+import { ArtworkCard } from '../../components/ArtworkCard';
 
 export const HomePage: React.FC = () => {
   const [pageIndex, setPageIndex] = useState(0);
@@ -46,9 +47,9 @@ export const HomePage: React.FC = () => {
       {error && <p>{error}</p>}
       {!error && artworks.length !== 0 && (
         <SectionLayout subtitle="Artworks for you" title="Our special gallery">
-          <div>
+          <div className="artwork-list">
             {currentArtworks.map(artwork => (
-              <div>{artwork.title}</div>
+              <ArtworkCard key={artwork.id} artwork={artwork} />
             ))}
           </div>
           <Pagination
