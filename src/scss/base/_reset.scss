@@ -48,6 +48,12 @@ a:not([class]) {
   text-decoration-skip-ink: auto;
 }
 
+a {
+  text-decoration: none;
+  text-decoration-line: none;
+  color: inherit;
+}
+
 img {
   max-width: 100%;
   display: block;
