@@ -1,0 +1,62 @@
+@use '../abstracts/' as a;
+
+.artwork {
+  @include a.flex-container($direction: column, $align: center);
+  width: a.rem(387);
+
+  &:hover {
+    transform: scale(103%);
+  }
+
+  &__image-container {
+    max-width: a.rem(387);
+    height: a.rem(444);
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__description {
+    position: relative;
+    @include a.flex-container(
+      $justify: space-between,
+      $align: center,
+      $gap: a.rem(80)
+    );
+
+    width: a.rem(350);
+    height: a.rem(132);
+    padding: a.rem(16);
+    border: a.rem(1) solid a.$color-card-border;
+
+    bottom: 40px;
+
+    background-color: a.$color-page-background;
+  }
+
+  &__heading {
+    @include a.flex-container($direction: column, $gap: a.rem(8));
+    max-width: a.rem(160);
+  }
+
+  &__title {
+    font-size: a.rem(17);
+    font-weight: 500;
+    letter-spacing: -3%;
+  }
+
+  &__artist {
+    font-size: a.rem(15);
+    font-weight: 400;
+    letter-spacing: -1%;
+    color: a.$color-light-orange;
+  }
+
+  &__is-public {
+    font-size: a.rem(15);
+    font-weight: 700;
+  }
+}
