@@ -37,7 +37,7 @@ export const HomePage: React.FC = () => {
   return (
     <PageLayout isHomePage={true} className="home">
       <h1 className="title">
-        Let's find some <span className="title-accent">Art</span> here!
+        Let's find some <span className="title title_accent">Art</span> here!
       </h1>
       {isFetching && <Loader />}
       {error && <p>{error}</p>}

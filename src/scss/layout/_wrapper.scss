@@ -72,3 +72,9 @@ main .wrapper {
 .artwork-page main .wrapper {
   @include a.flex-container();
 }
+
+.home .wrapper {
+  & .title {
+    display: inline;
+  }
+}
