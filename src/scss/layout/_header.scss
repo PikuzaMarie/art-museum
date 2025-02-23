@@ -1,0 +1,38 @@
+@use '../abstracts/' as a;
+
+.header {
+  @include a.flex-container($align: center);
+  width: 100vw;
+  height: a.rem(128);
+
+  background: linear-gradient(
+    to left,
+    a.$color-start-lin-grad,
+    a.$color-middle-lin-grad,
+    a.$color-end-lin-grad
+  );
+  background-size: cover;
+
+  .wrapper {
+    @include a.flex-container($justify: space-between);
+    width: 100%;
+  }
+
+  &__nav {
+    @include a.flex-container($align: center);
+    width: fit-content;
+  }
+
+  &__navlist {
+    @include a.flex-container($align: center, $gap: a.rem(32));
+
+    &__link {
+      @include a.flex-container($justify: center, $gap: a.rem(4));
+
+      font-weight: 300;
+      font-size: a.rem(18);
+      list-style-type: none;
+      color: a.$color-white;
+    }
+  }
+}

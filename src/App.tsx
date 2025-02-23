@@ -1,5 +1,12 @@
+import { BrowserRouter } from 'react-router-dom';
+import { Router } from './pages/router';
+
 function App() {
-	return <p>Hello, future Museum of Art</p>;
+  return (
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
+  );
 }
 
 export default App;
