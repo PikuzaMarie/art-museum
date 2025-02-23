@@ -9,15 +9,39 @@
   padding: 0 a.rem(16);
 
   & .title {
+    @include a.flex-container(
+      $direction: column,
+      $align: center,
+      $gap: a.rem(8)
+    );
     width: a.rem(684);
+
     font-size: a.rem(64);
     font-weight: 700;
-    line-height: 1.25;
+    line-height: 1.1;
     text-align: center;
     text-transform: capitalize;
+    color: a.$color-gray;
 
-    &-accent {
+    &_accent {
       color: a.$color-accent-orange;
+      width: fit-content;
+    }
+
+    &__accent-block {
+      @include a.flex-container($justify: center);
+      text-align: center;
+    }
+
+    &__icon {
+      @include a.flex-container($justify: center, $align: center);
+      width: a.rem(72);
+      height: a.rem(72);
+
+      img {
+        width: a.rem(32);
+        height: a.rem(42);
+      }
     }
   }
 }
@@ -29,6 +53,7 @@ main .wrapper {
     $align: center,
     $gap: a.rem(120)
   );
+  min-height: calc(100vh - a.rem(128) * 2 - a.rem(152) * 2);
 }
 
 .artwork-page main .wrapper {

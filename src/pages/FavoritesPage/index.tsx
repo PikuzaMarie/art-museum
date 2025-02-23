@@ -10,14 +10,14 @@ export const FavoritesPage: React.FC = () => {
   const { favoriteArtworks } = useContext(FavoritesContext);
   return (
     <PageLayout isHomePage={false} className="favorites">
-      <h1>
+      <h1 className="title">
         Here are your
         <br />
-        <span>
-          <span>
+        <span className="title__accent-block">
+          <span className="title__icon">
             <img src={bookmarkIcon} alt="Bookmark icon" />
           </span>
-          <span>favourites</span>
+          <span className="title title_accent">favourites</span>
         </span>
       </h1>
       {favoriteArtworks.length !== 0 ? (
