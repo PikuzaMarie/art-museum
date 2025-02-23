@@ -22,9 +22,11 @@ export const FavoritesPage: React.FC = () => {
       </h1>
       {favoriteArtworks.length !== 0 ? (
         <SectionLayout subtitle="Saved by you" title="Your favorites list">
-          {favoriteArtworks.map(item => (
-            <ArtworkCard key={item.id} artwork={item} />
-          ))}
+          <div className="artwork-list">
+            {favoriteArtworks.map(item => (
+              <ArtworkCard key={item.id} artwork={item} />
+            ))}
+          </div>
         </SectionLayout>
       ) : (
         <div className="wrapper__fallback-content">

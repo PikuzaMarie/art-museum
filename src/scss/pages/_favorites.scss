@@ -1,0 +1,9 @@
+@use '../abstracts/' as a;
+
+.favorites {
+  @include a.flex-container($direction: column, $gap: a.rem(120));
+
+  .artwork-list {
+    @include a.flex-container($wrap: wrap, $gap: a.rem(16), $align: center);
+  }
+}
