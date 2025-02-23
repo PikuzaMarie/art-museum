@@ -33,4 +33,9 @@
     background-color: initial;
     border: initial;
   }
+
+  &-favorite {
+    width: a.rem(60);
+    height: a.rem(60);
+  }
 }
