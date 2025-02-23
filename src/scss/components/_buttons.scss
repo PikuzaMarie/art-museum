@@ -20,8 +20,9 @@
     border-color: a.$color-light-orange;
   }
 
-  &:active {
+  &.active {
     background-color: lighten(a.$color-light-orange, 30%);
+    border-color: a.$color-light-orange;
   }
 
   &:disabled {
