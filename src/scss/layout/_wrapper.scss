@@ -30,3 +30,7 @@ main .wrapper {
     $gap: a.rem(120)
   );
 }
+
+.artwork-page main .wrapper {
+  @include a.flex-container();
+}
