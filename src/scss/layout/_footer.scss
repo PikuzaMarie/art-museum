@@ -12,4 +12,13 @@
     justify-content: space-between;
     align-items: center;
   }
+
+  &__link {
+    @include a.flex-container($align: center, $gap: a.rem(4));
+
+    & img {
+      width: a.rem(43);
+      height: a.rem(43);
+    }
+  }
 }
