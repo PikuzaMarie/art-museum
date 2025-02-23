@@ -9,15 +9,18 @@ interface ArtworkCardProps {
 export const ArtworkCard: React.FC<ArtworkCardProps> = ({ artwork }) => {
   return (
     <article className="artwork">
-      <Link to={`/artwork/${artwork.id}`}>
-        <figure className="artwork__image-container">
+      <figure className="artwork__image-container">
+        <Link to={`/artwork/${artwork.id}`}>
           <img
             src={`https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg`}
             alt={artwork.thumbnail?.alt_text ?? artwork.title}
             className="artwork__image"
           />
-        </figure>
-        <div className="artwork__description">
+        </Link>
+      </figure>
+
+      <div className="artwork__description">
+        <Link to={`/artwork/${artwork.id}`}>
           <div className="artwork__heading">
             <div>
               <h5 className="artwork__title overflow">{artwork.title}</h5>
@@ -29,9 +32,9 @@ export const ArtworkCard: React.FC<ArtworkCardProps> = ({ artwork }) => {
               <span className="artwork__is-public">Public</span>
             ) : undefined}
           </div>
-          <FavoriteButton />
-        </div>
-      </Link>
+        </Link>
+        <FavoriteButton artwork={artwork} />
+      </div>
     </article>
   );
 };
