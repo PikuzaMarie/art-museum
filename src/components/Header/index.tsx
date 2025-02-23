@@ -25,10 +25,11 @@ const HeaderComponent: React.FC<HeaderProps> = ({ isHomePage }) => {
                 </Link>
               </li>
             )}
-
-            <li className="header__navlist__link">
-              <img src={bookmarkIcon} alt="Bookmark icon" />
-              <span>Your favorites</span>
+            <li>
+              <Link to="/favorites" className="header__navlist__link">
+                <img src={bookmarkIcon} alt="Bookmark icon" />
+                <span>Your favorites</span>
+              </Link>
             </li>
           </ul>
         </nav>
