@@ -45,7 +45,7 @@ export const HomePage: React.FC = () => {
         <SectionLayout subtitle="Artworks for you" title="Our special gallery">
           <div className="artwork-list">
             {currentArtworks.map(artwork => (
-              <ArtworkCard key={artwork.id} artwork={artwork} />
+              <ArtworkCard key={artwork.id} artwork={artwork} variant="large" />
             ))}
           </div>
           <Pagination

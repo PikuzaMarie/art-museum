@@ -24,7 +24,7 @@ export const FavoritesPage: React.FC = () => {
         <SectionLayout subtitle="Saved by you" title="Your favorites list">
           <div className="artwork-list">
             {favoriteArtworks.map(item => (
-              <ArtworkCard key={item.id} artwork={item} />
+              <ArtworkCard key={item.id} artwork={item} variant="small" />
             ))}
           </div>
         </SectionLayout>

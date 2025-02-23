@@ -4,11 +4,15 @@ import { FavoriteButton } from '../FavoriteButton';
 
 interface ArtworkCardProps {
   artwork: Artwork;
+  variant: 'large' | 'small';
 }
 
-export const ArtworkCard: React.FC<ArtworkCardProps> = ({ artwork }) => {
+export const ArtworkCard: React.FC<ArtworkCardProps> = ({
+  artwork,
+  variant,
+}) => {
   return (
-    <article className="artwork">
+    <article className={`artwork ${variant === 'small' ? 'small' : undefined}`}>
       <figure className="artwork__image-container">
         <Link to={`/artwork/${artwork.id}`}>
           <img
