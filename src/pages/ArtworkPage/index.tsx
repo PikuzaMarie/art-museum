@@ -21,7 +21,7 @@ export const ArtworkPage: React.FC = () => {
               className="artwork-details__image"
             />
             <div className="artwork-details__button">
-              <FavoriteButton />
+              <FavoriteButton artwork={currentArtwork} />
             </div>
           </div>
           <div className="artwork-details__description">
