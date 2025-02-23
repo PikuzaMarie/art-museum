@@ -1,18 +1,14 @@
-import { useState } from 'react';
-import { useFetch } from '../../hooks/useFetch';
+import { useContext, useState } from 'react';
 import { PageLayout } from '../../components/PageLayout';
 import { SectionLayout } from '../../components/SectionLayout';
-import { fetchAvailableArtworks } from '../../api';
 import { Loader } from '../../components/Loader';
 import { Pagination } from '../../components/Pagination';
 import { ArtworkCard } from '../../components/ArtworkCard';
+import { ArtworksContext } from '../../store';
 
 export const HomePage: React.FC = () => {
   const [pageIndex, setPageIndex] = useState(0);
-
-  const { artworks, isFetching, error } = useFetch({
-    fetchFn: fetchAvailableArtworks,
-  });
+  const { artworks, isFetching, error } = useContext(ArtworksContext);
 
   const itemsOnPage = 5;
   const lastPageIndex = Math.ceil(artworks.length / itemsOnPage) - 1;
