@@ -27,7 +27,7 @@ export const FavoritesPage: React.FC = () => {
           ))}
         </SectionLayout>
       ) : (
-        <div>
+        <div className="wrapper__fallback-content">
           <p>You haven't saved any artworks yet.</p>
           <p>
             Explore artworks at <Link to={`/`}>homepage</Link>
