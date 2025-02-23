@@ -53,7 +53,9 @@ main .wrapper {
     $align: center,
     $gap: a.rem(120)
   );
-  min-height: calc(100vh - a.rem(128) * 2 - a.rem(152) * 2);
+  min-height: calc(
+    100vh - a.rem(128) * 2 - a.rem(120) * 2
+  ); //window height (100vh) - footer and header height (128px * 2) - vertical flow height (120px * 2)
 }
 
 .artwork-page main .wrapper {
