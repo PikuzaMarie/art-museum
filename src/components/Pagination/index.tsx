@@ -22,27 +22,45 @@ export const Pagination: React.FC<PaginationProps> = ({
 }) => {
   return (
     <nav>
-      <ul>
+      <ul className="pagination">
         <li>
-          <button onClick={onGoToFirst} disabled={currentPage === 1}>
+          <button
+            className="pagination button"
+            onClick={onGoToFirst}
+            disabled={currentPage === 1}
+          >
             <img src={iconLeftDouble} alt="left-double-arrow" />
           </button>
         </li>
         <li>
-          <button onClick={onGoToPrevious} disabled={currentPage === 1}>
+          <button
+            className="pagination button"
+            onClick={onGoToPrevious}
+            disabled={currentPage === 1}
+          >
             <img src={iconLeft} alt="left-arrow" />
           </button>
         </li>
         <li>
-          <button>{currentPage}</button>
+          <button className="pagination__page-number button">
+            {currentPage}
+          </button>
         </li>
         <li>
-          <button onClick={onGoToNext} disabled={currentPage === lastPage}>
+          <button
+            className="pagination button"
+            onClick={onGoToNext}
+            disabled={currentPage === lastPage}
+          >
             <img src={iconRight} alt="right-arrow" />
           </button>
         </li>
         <li>
-          <button onClick={onGoToLast} disabled={currentPage === lastPage}>
+          <button
+            className="pagination button"
+            onClick={onGoToLast}
+            disabled={currentPage === lastPage}
+          >
             <img src={iconRightDouble} alt="right-double-arrow" />
           </button>
         </li>

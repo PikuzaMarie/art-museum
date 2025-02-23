@@ -1,0 +1,36 @@
+@use '../abstracts/' as a;
+
+.button {
+  @include a.flex-container($justify: center, $align: center);
+  width: a.rem(54);
+  height: a.rem(54);
+
+  font-size: a.rem(20);
+
+  border-radius: 50%;
+  border: a.rem(2) solid a.$color-card-border;
+
+  background-color: a.$color-button-backgorund;
+
+  cursor: pointer;
+
+  &:hover {
+    color: a.$color-gray;
+    background-color: lighten(a.$color-light-orange, 30%);
+    border-color: a.$color-light-orange;
+  }
+
+  &:active {
+    background-color: lighten(a.$color-light-orange, 30%);
+  }
+
+  &:disabled {
+    opacity: 50%;
+    cursor: not-allowed;
+  }
+
+  &:disabled:hover {
+    background-color: initial;
+    border: initial;
+  }
+}
