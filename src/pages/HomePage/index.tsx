@@ -1,7 +1,14 @@
+import { useFetch } from '../../hooks/useFetch';
 import { PageLayout } from '../../components/PageLayout';
 import { SectionLayout } from '../../components/SectionLayout';
+import { fetchAvailableArtworks } from '../../api';
 
 export const HomePage: React.FC = () => {
+  const { artworks, isFetching, error } = useFetch({
+    fetchFn: fetchAvailableArtworks,
+  });
+  console.log(artworks, isFetching, error);
+
   return (
     <PageLayout isHomePage={true} className="home">
       <h1 className="title">
