@@ -26,13 +26,12 @@
   }
 
   &:disabled {
-    opacity: 50%;
     cursor: not-allowed;
   }
 
   &:disabled:hover {
-    background-color: initial;
-    border: initial;
+    background-color: a.$color-button-backgorund;
+    border: a.rem(2) solid a.$color-card-border;
   }
 
   &-favorite {
