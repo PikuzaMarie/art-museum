@@ -1,9 +1,10 @@
 import { buildURL } from '../utils/buildURL';
 import { fetchData } from '../utils/fetchData';
-import { ArtworksResponse } from '../types';
+import { ArtworksResponse, SearchResponse } from '../types';
 
 const SERVER_URL = 'https://api.artic.edu';
 const ARTWORKS_ENDPOINT = '/api/v1/artworks';
+const ARTWORKS_SEARCH_ENDPOINT = ARTWORKS_ENDPOINT + '/search';
 const NUMBER_OF_ITEMS = 100;
 const REQUESTED_FIELDS = [
   'id',
@@ -32,26 +33,34 @@ export async function fetchAvailableArtworks() {
   return fetchData<ArtworksResponse>(url);
 }
 
-// export async function fetchSearchResults(searchTerm: string) {
-//   const searchURL = buildURL(ARTWROKS_SEARCH_ENDPOINT, SERVER_URL, {
-//     q: searchTerm,
-//     limit: NUMBER_OF_ITEMS,
-//   });
+export async function fetchSearchResults(searchTerm: string) {
+  const searchURL = buildURL({
+    endpoint: ARTWORKS_SEARCH_ENDPOINT,
+    serverURL: SERVER_URL,
+    params: {
+      q: searchTerm,
+      limit: NUMBER_OF_ITEMS,
+    },
+  });
 
-//   const searchResponse = await (fetchData(
-//     searchURL,
-//   ) as Promise<SearchResponse>);
-//   if (searchResponse.data.length === 0) return { data: [] };
+  const searchResponse = await (fetchData(
+    searchURL,
+  ) as Promise<SearchResponse>);
+  if (searchResponse.data.length === 0) return { data: [] };
 
-//   const ids = searchResponse.data
-//     .map(result => result.api_link.split('/').pop())
-//     .join(',');
+  const ids = searchResponse.data
+    .map(result => result.api_link.split('/').pop())
+    .join(',');
 
-//   const artworksURL = buildURL(ARTWORKS_ENDPOINT, SERVER_URL, {
-//     ids: ids,
-//     limit: NUMBER_OF_ITEMS,
-//     fields: REQUESTED_FIELDS,
-//   });
+  const artworksURL = buildURL({
+    endpoint: ARTWORKS_ENDPOINT,
+    serverURL: SERVER_URL,
+    params: {
+      ids: ids,
+      limit: NUMBER_OF_ITEMS,
+      fields: REQUESTED_FIELDS,
+    },
+  });
 
-//   return fetchData(artworksURL) as Promise<ArtworksResponse>;
-// }
+  return fetchData(artworksURL) as Promise<ArtworksResponse>;
+}
