@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { useDebounce } from '../../hooks/useDebounce';
 import { fetchSearchResults } from '../../api';
 import { validateInput } from '../../utils/validationFunctions';
+import { fetchAvailableArtworks } from '../../api';
 
 import { ArtworksContext } from '../../store';
 
@@ -28,6 +29,11 @@ export const SearchForm: React.FC = () => {
     if (isValidInput) {
       setIsSearching(true);
       fetchSearchResults(debouncedSearchTerm)
+        .then(results => setArtworks(results.data))
+        .finally(() => setIsSearching(false));
+    } else if (debouncedSearchTerm === '') {
+      setIsSearching(true);
+      fetchAvailableArtworks()
         .then(results => setArtworks(results.data))
         .finally(() => setIsSearching(false));
     }
