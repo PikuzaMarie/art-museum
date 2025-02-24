@@ -6,6 +6,7 @@ import { Pagination } from '../../components/Pagination';
 import { ArtworkCard } from '../../components/ArtworkCard';
 import { ArtworksContext } from '../../store';
 import { SortControls } from '../../components/SortControls';
+import { SearchForm } from '../../components/SearchForm';
 
 export const HomePage: React.FC = () => {
   const [pageIndex, setPageIndex] = useState(0);
@@ -46,6 +47,7 @@ export const HomePage: React.FC = () => {
       <h1 className="title">
         Let's find some <span className="title title_accent">Art</span> here!
       </h1>
+      <SearchForm />
       {isFetching && <Loader />}
       {error && <p>{error}</p>}
       {!error && artworks.length !== 0 && (
