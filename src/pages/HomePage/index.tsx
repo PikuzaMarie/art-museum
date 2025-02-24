@@ -5,10 +5,13 @@ import { Loader } from '../../components/Loader';
 import { Pagination } from '../../components/Pagination';
 import { ArtworkCard } from '../../components/ArtworkCard';
 import { ArtworksContext } from '../../store';
+import { SortControls } from '../../components/SortControls';
 
 export const HomePage: React.FC = () => {
   const [pageIndex, setPageIndex] = useState(0);
-  const { artworks, isFetching, error } = useContext(ArtworksContext);
+
+  const { artworks, isFetching, error, sortCriteria, setSortCriteria } =
+    useContext(ArtworksContext);
 
   const itemsOnPage = 5;
   const lastPageIndex = Math.ceil(artworks.length / itemsOnPage) - 1;
@@ -17,6 +20,10 @@ export const HomePage: React.FC = () => {
     pageIndex * itemsOnPage,
     (pageIndex + 1) * itemsOnPage,
   );
+
+  const handleSortCriteriaChange = (value: string) => {
+    setSortCriteria(value);
+  };
 
   const handleGoToFirstPage = () => {
     setPageIndex(0);
@@ -43,6 +50,11 @@ export const HomePage: React.FC = () => {
       {error && <p>{error}</p>}
       {!error && artworks.length !== 0 && (
         <SectionLayout subtitle="Artworks for you" title="Our special gallery">
+          <SortControls
+            id="artworks-sorter"
+            sortCriteria={sortCriteria}
+            onSortCriteriaChange={handleSortCriteriaChange}
+          />
           <div className="artwork-list">
             {currentArtworks.map(artwork => (
               <ArtworkCard key={artwork.id} artwork={artwork} variant="large" />
