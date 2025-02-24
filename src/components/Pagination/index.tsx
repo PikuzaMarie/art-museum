@@ -1,3 +1,4 @@
+import { memo, useMemo } from 'react';
 import iconLeftDouble from '../../assets/icons/icon-pagination-left-double.svg';
 import iconLeft from '../../assets/icons/icon-pagination-left.svg';
 import iconRightDouble from '../../assets/icons/icon-pagination-right-double.svg';
@@ -12,7 +13,7 @@ interface PaginationProps {
   onGoToLast: () => void;
 }
 
-export const Pagination: React.FC<PaginationProps> = ({
+const PaginationComponent: React.FC<PaginationProps> = ({
   currentPage,
   lastPage,
   onGoToFirst,
@@ -20,6 +21,12 @@ export const Pagination: React.FC<PaginationProps> = ({
   onGoToNext,
   onGoToLast,
 }) => {
+  const isFirstPage = useMemo(() => currentPage === 1, [currentPage]);
+  const isLastPage = useMemo(
+    () => currentPage === lastPage,
+    [currentPage, lastPage],
+  );
+
   return (
     <nav>
       <ul className="pagination">
@@ -27,7 +34,7 @@ export const Pagination: React.FC<PaginationProps> = ({
           <button
             className="pagination button"
             onClick={onGoToFirst}
-            disabled={currentPage === 1}
+            disabled={isFirstPage}
           >
             <img src={iconLeftDouble} alt="left-double-arrow" />
           </button>
@@ -36,7 +43,7 @@ export const Pagination: React.FC<PaginationProps> = ({
           <button
             className="pagination button"
             onClick={onGoToPrevious}
-            disabled={currentPage === 1}
+            disabled={isFirstPage}
           >
             <img src={iconLeft} alt="left-arrow" />
           </button>
@@ -50,7 +57,7 @@ export const Pagination: React.FC<PaginationProps> = ({
           <button
             className="pagination button"
             onClick={onGoToNext}
-            disabled={currentPage === lastPage}
+            disabled={isLastPage}
           >
             <img src={iconRight} alt="right-arrow" />
           </button>
@@ -59,7 +66,7 @@ export const Pagination: React.FC<PaginationProps> = ({
           <button
             className="pagination button"
             onClick={onGoToLast}
-            disabled={currentPage === lastPage}
+            disabled={isLastPage}
           >
             <img src={iconRightDouble} alt="right-double-arrow" />
           </button>
@@ -68,3 +75,5 @@ export const Pagination: React.FC<PaginationProps> = ({
     </nav>
   );
 };
+
+export const Pagination = memo(PaginationComponent);

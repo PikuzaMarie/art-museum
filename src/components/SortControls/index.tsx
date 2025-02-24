@@ -1,10 +1,12 @@
+import { memo } from 'react';
+
 interface SortControlsProps {
   id: string;
   sortCriteria: string;
   onSortCriteriaChange: (criteria: string) => void;
 }
 
-export const SortControls: React.FC<SortControlsProps> = ({
+const SortControlsComponent: React.FC<SortControlsProps> = ({
   id,
   sortCriteria,
   onSortCriteriaChange,
@@ -36,3 +38,5 @@ export const SortControls: React.FC<SortControlsProps> = ({
     </div>
   );
 };
+
+export const SortControls = memo(SortControlsComponent);

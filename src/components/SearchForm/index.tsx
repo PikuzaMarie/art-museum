@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useCallback } from 'react';
 import { useDebounce } from '../../hooks/useDebounce';
 import { fetchSearchResults } from '../../api';
 import { validateInput } from '../../utils/validationFunctions';
@@ -43,15 +43,13 @@ export const SearchForm: React.FC = () => {
     }
   }, [debouncedSearchTerm, errors]);
 
-  const handleSearchTermChange = (value: string) => {
+  const handleSearchTermChange = useCallback((value: string) => {
     setSearchTerm(value);
-  };
+  }, []);
 
-  const handleClearSearchTerm = () => {
+  const handleClearSearchTerm = useCallback(() => {
     setSearchTerm('');
-    setErrors([]);
-    setNoResults(false);
-  };
+  }, []);
 
   return (
     <div className="search-form">

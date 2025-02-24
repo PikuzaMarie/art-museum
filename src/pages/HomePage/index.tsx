@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import { PageLayout } from '../../components/PageLayout';
 import { SectionLayout } from '../../components/SectionLayout';
 import { Loader } from '../../components/Loader';
@@ -28,25 +28,28 @@ export const HomePage: React.FC = () => {
     (pageIndex + 1) * itemsOnPage,
   );
 
-  const handleSortCriteriaChange = (value: string) => {
-    setSortCriteria(value);
-  };
+  const handleSortCriteriaChange = useCallback(
+    (value: string) => {
+      setSortCriteria(value);
+    },
+    [setSortCriteria],
+  );
 
-  const handleGoToFirstPage = () => {
+  const handleGoToFirstPage = useCallback(() => {
     setPageIndex(0);
-  };
+  }, []);
 
-  const handleGoToPreviousPage = () => {
+  const handleGoToPreviousPage = useCallback(() => {
     setPageIndex(prevPageIndex => Math.max(prevPageIndex - 1, 0));
-  };
+  }, []);
 
-  const handleGoToNextPage = () => {
+  const handleGoToNextPage = useCallback(() => {
     setPageIndex(prevPageIndex => Math.min(prevPageIndex + 1, lastPageIndex));
-  };
+  }, [lastPageIndex]);
 
-  const handleGoToLastPage = () => {
+  const handleGoToLastPage = useCallback(() => {
     setPageIndex(lastPageIndex);
-  };
+  }, [lastPageIndex]);
 
   return (
     <PageLayout isHomePage={true} className="home">
