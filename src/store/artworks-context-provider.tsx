@@ -11,12 +11,14 @@ interface ArtworksContextProviderProps {
 export const ArtworksContextProvider: React.FC<
   ArtworksContextProviderProps
 > = ({ children }) => {
-  const { artworks, isFetching, error } = useFetch({
+  const { artworks, setArtworks, isFetching, error } = useFetch({
     fetchFn: fetchAvailableArtworks,
   });
 
   const [sortCriteria, setSortCriteria] = useState<string>('title-asc');
   const [sortedArtworks, setSortedArtworks] = useState(artworks);
+
+  const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
     if (artworks.length !== 0) {
@@ -27,10 +29,13 @@ export const ArtworksContextProvider: React.FC<
 
   const ctxValue = {
     artworks: sortedArtworks,
+    setArtworks,
     sortCriteria,
     setSortCriteria,
     isFetching,
     error,
+    isSearching,
+    setIsSearching,
   };
 
   return (

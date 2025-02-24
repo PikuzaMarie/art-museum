@@ -33,5 +33,5 @@ export function useFetch({ fetchFn }: UseFetchProps) {
     void fetchData();
   }, [fetchFn]);
 
-  return { artworks, isFetching, error };
+  return { artworks, setArtworks, isFetching, error };
 }

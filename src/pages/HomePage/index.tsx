@@ -6,12 +6,19 @@ import { Pagination } from '../../components/Pagination';
 import { ArtworkCard } from '../../components/ArtworkCard';
 import { ArtworksContext } from '../../store';
 import { SortControls } from '../../components/SortControls';
+import { SearchForm } from '../../components/SearchForm';
 
 export const HomePage: React.FC = () => {
   const [pageIndex, setPageIndex] = useState(0);
 
-  const { artworks, isFetching, error, sortCriteria, setSortCriteria } =
-    useContext(ArtworksContext);
+  const {
+    artworks,
+    isFetching,
+    error,
+    sortCriteria,
+    setSortCriteria,
+    isSearching,
+  } = useContext(ArtworksContext);
 
   const itemsOnPage = 5;
   const lastPageIndex = Math.ceil(artworks.length / itemsOnPage) - 1;
@@ -46,9 +53,10 @@ export const HomePage: React.FC = () => {
       <h1 className="title">
         Let's find some <span className="title title_accent">Art</span> here!
       </h1>
-      {isFetching && <Loader />}
+      <SearchForm />
+      {(isFetching || isSearching) && <Loader />}
       {error && <p>{error}</p>}
-      {!error && artworks.length !== 0 && (
+      {!isFetching && !isSearching && !error && artworks.length !== 0 && (
         <SectionLayout subtitle="Artworks for you" title="Our special gallery">
           <SortControls
             id="artworks-sorter"

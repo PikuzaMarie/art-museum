@@ -1,8 +1,12 @@
-import { ArtworksResponse } from '../types';
+import { buildURL } from '../utils/buildURL';
+import { fetchData } from '../utils/fetchData';
+import { ArtworksResponse, SearchResponse } from '../types';
 
-const serverURL = 'https://api.artic.edu/api/v1/artworks';
-const numberOfItems = 100;
-const reqestedFields = [
+const SERVER_URL = 'https://api.artic.edu';
+const ARTWORKS_ENDPOINT = '/api/v1/artworks';
+const ARTWORKS_SEARCH_ENDPOINT = ARTWORKS_ENDPOINT + '/search';
+const NUMBER_OF_ITEMS = 100;
+const REQUESTED_FIELDS = [
   'id',
   'title',
   'artist_title',
@@ -17,16 +21,46 @@ const reqestedFields = [
 ].join(',');
 
 export async function fetchAvailableArtworks() {
-  const response = await fetch(
-    `${serverURL}?limit=${numberOfItems}&fields=${reqestedFields}`,
-  );
+  const url = buildURL({
+    endpoint: ARTWORKS_ENDPOINT,
+    serverURL: SERVER_URL,
+    params: {
+      limit: NUMBER_OF_ITEMS,
+      fields: REQUESTED_FIELDS,
+    },
+  });
 
-  if (!response.ok) {
-    throw new Error('Failed to fetch artworks. Some error occured on server');
-  }
+  return fetchData<ArtworksResponse>(url);
+}
 
-  const responseData: ArtworksResponse =
-    await (response.json() as Promise<ArtworksResponse>);
+export async function fetchSearchResults(searchTerm: string) {
+  const searchURL = buildURL({
+    endpoint: ARTWORKS_SEARCH_ENDPOINT,
+    serverURL: SERVER_URL,
+    params: {
+      q: searchTerm,
+      limit: NUMBER_OF_ITEMS,
+    },
+  });
 
-  return responseData;
+  const searchResponse = await (fetchData(
+    searchURL,
+  ) as Promise<SearchResponse>);
+  if (searchResponse.data.length === 0) return { data: [] };
+
+  const ids = searchResponse.data
+    .map(result => result.api_link.split('/').pop())
+    .join(',');
+
+  const artworksURL = buildURL({
+    endpoint: ARTWORKS_ENDPOINT,
+    serverURL: SERVER_URL,
+    params: {
+      ids: ids,
+      limit: NUMBER_OF_ITEMS,
+      fields: REQUESTED_FIELDS,
+    },
+  });
+
+  return fetchData(artworksURL) as Promise<ArtworksResponse>;
 }
