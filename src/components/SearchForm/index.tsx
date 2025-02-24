@@ -9,6 +9,7 @@ import { ArtworksContext } from '../../store';
 export const SearchForm: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [errors, setErrors] = useState<string[]>([]);
+  const [noResults, setNoResults] = useState(false);
 
   const { setArtworks, isSearching, setIsSearching } =
     useContext(ArtworksContext);
@@ -29,7 +30,15 @@ export const SearchForm: React.FC = () => {
     if (isValidInput) {
       setIsSearching(true);
       fetchSearchResults(debouncedSearchTerm)
-        .then(results => setArtworks(results.data))
+        .then(results => {
+          if (results.data.length === 0) {
+            setNoResults(true);
+            setArtworks([]);
+          } else {
+            setNoResults(false);
+            setArtworks(results.data);
+          }
+        })
         .finally(() => setIsSearching(false));
     } else if (debouncedSearchTerm === '') {
       setIsSearching(true);
@@ -46,6 +55,7 @@ export const SearchForm: React.FC = () => {
   const handleClearSearchTerm = () => {
     setSearchTerm('');
     setErrors([]);
+    setNoResults(false);
   };
 
   return (
@@ -70,6 +80,12 @@ export const SearchForm: React.FC = () => {
         </ul>
       )}
       {isSearching && <p>Searching for results...</p>}
+      {noResults && !isSearching && (
+        <p>
+          Nothing was found for your request. Try out searching for something
+          else :)
+        </p>
+      )}
     </>
   );
 };
