@@ -8,6 +8,8 @@ interface ArtworksContextProps {
   error: string | null;
   sortCriteria: string;
   setSortCriteria: (value: string) => void;
+  isSearching: boolean;
+  setIsSearching: (value: boolean) => void;
 }
 
 export const ArtworksContext = createContext<ArtworksContextProps>({
@@ -17,4 +19,6 @@ export const ArtworksContext = createContext<ArtworksContextProps>({
   error: null,
   sortCriteria: 'title-asc',
   setSortCriteria: () => {},
+  isSearching: false,
+  setIsSearching: () => {},
 });

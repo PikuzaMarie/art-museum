@@ -18,6 +18,8 @@ export const ArtworksContextProvider: React.FC<
   const [sortCriteria, setSortCriteria] = useState<string>('title-asc');
   const [sortedArtworks, setSortedArtworks] = useState(artworks);
 
+  const [isSearching, setIsSearching] = useState(false);
+
   useEffect(() => {
     if (artworks.length !== 0) {
       const sortedArtworks = sortArtworks(artworks, sortCriteria);
@@ -32,6 +34,8 @@ export const ArtworksContextProvider: React.FC<
     setSortCriteria,
     isFetching,
     error,
+    isSearching,
+    setIsSearching,
   };
 
   return (
