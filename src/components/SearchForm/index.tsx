@@ -7,7 +7,8 @@ import { ArtworksContext } from '../../store';
 export const SearchForm: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const { setArtworks } = useContext(ArtworksContext);
+  const { setArtworks, isSearching, setIsSearching } =
+    useContext(ArtworksContext);
   const debouncedSearchTerm = useDebounce({
     value: searchTerm,
     delay: 500,
@@ -15,9 +16,12 @@ export const SearchForm: React.FC = () => {
 
   useEffect(() => {
     if (debouncedSearchTerm) {
-      fetchSearchResults(debouncedSearchTerm).then(results => {
-        setArtworks(results.data);
-      });
+      setIsSearching(true);
+      fetchSearchResults(debouncedSearchTerm)
+        .then(results => {
+          setArtworks(results.data);
+        })
+        .finally(() => setIsSearching(false));
     }
   }, [debouncedSearchTerm]);
 
@@ -34,6 +38,7 @@ export const SearchForm: React.FC = () => {
           onChange={e => handleSearchTermChange(e.target.value)}
         />
       </div>
+      {isSearching && <p>Searching for results...</p>}
     </>
   );
 };
