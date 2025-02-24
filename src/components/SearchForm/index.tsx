@@ -37,6 +37,11 @@ export const SearchForm: React.FC = () => {
     setSearchTerm(value);
   };
 
+  const handleClearSearchTerm = () => {
+    setSearchTerm('');
+    setErrors([]);
+  };
+
   return (
     <>
       <div>
@@ -48,7 +53,9 @@ export const SearchForm: React.FC = () => {
           maxLength={60}
         />
       </div>
-
+      <button onClick={handleClearSearchTerm} disabled={searchTerm === ''}>
+        X
+      </button>
       {errors.length > 0 && (
         <ul>
           {errors.map((error, index) => (
