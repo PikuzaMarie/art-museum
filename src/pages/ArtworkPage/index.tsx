@@ -1,18 +1,22 @@
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { FavoriteButton } from '../../components/FavoriteButton';
 import { PageLayout } from '../../components/PageLayout';
-import { ArtworksContext } from '../../store';
+import { ArtworksContext, FavoritesContext } from '../../store';
 import { useParams } from 'react-router';
 
 export const ArtworkPage: React.FC = () => {
   const { id } = useParams();
   const { artworks } = useContext(ArtworksContext);
+  const { favoriteArtworks } = useContext(FavoritesContext);
 
-  const currentArtwork = artworks.find(item => item.id === Number(id));
+  const currentArtwork =
+    artworks.find(item => item.id === Number(id)) ||
+    favoriteArtworks.find(item => item.id === Number(id));
 
   return (
     <PageLayout isHomePage={false} className="artwork-page">
-      {currentArtwork && (
+      {currentArtwork ? (
         <article className="artwork-details">
           <div className="artwork-details__image-container">
             <img
@@ -70,6 +74,13 @@ export const ArtworkPage: React.FC = () => {
             </div>
           </div>
         </article>
+      ) : (
+        <div className="wrapper__fallback-content">
+          <p>Artwork not found!</p>
+          <p>
+            But don't worry, find another one on <Link to={`/`}>homepage</Link>
+          </p>
+        </div>
       )}
     </PageLayout>
   );

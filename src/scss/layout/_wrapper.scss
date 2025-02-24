@@ -71,6 +71,10 @@ main .wrapper {
 
 .artwork-page main .wrapper {
   @include a.flex-container();
+
+  &__fallback-content {
+    width: 100%; //rule to center fallback content on artwork page
+  }
 }
 
 .home .wrapper {
