@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from 'react';
 import { useDebounce } from '../../hooks/useDebounce';
 import { fetchSearchResults } from '../../api';
 import { validateInput } from '../../utils/validationFunctions';
-import { fetchAvailableArtworks } from '../../api';
 import searchIcon from '../../assets/icons/search-icon.svg';
 
 import { ArtworksContext } from '../../store';
@@ -26,6 +25,7 @@ export const SearchForm: React.FC = () => {
   }, [debouncedValidation]);
 
   useEffect(() => {
+    setNoResults(false);
     const isValidInput = debouncedSearchTerm.length >= 3 && errors.length === 0;
 
     if (isValidInput) {
@@ -34,17 +34,11 @@ export const SearchForm: React.FC = () => {
         .then(results => {
           if (results.data.length === 0) {
             setNoResults(true);
-            setArtworks([]);
           } else {
             setNoResults(false);
             setArtworks(results.data);
           }
         })
-        .finally(() => setIsSearching(false));
-    } else if (debouncedSearchTerm === '') {
-      setIsSearching(true);
-      fetchAvailableArtworks()
-        .then(results => setArtworks(results.data))
         .finally(() => setIsSearching(false));
     }
   }, [debouncedSearchTerm, errors]);
