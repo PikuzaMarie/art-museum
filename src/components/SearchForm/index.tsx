@@ -3,6 +3,7 @@ import { useDebounce } from '../../hooks/useDebounce';
 import { fetchSearchResults } from '../../api';
 import { validateInput } from '../../utils/validationFunctions';
 import { fetchAvailableArtworks } from '../../api';
+import searchIcon from '../../assets/icons/search-icon.svg';
 
 import { ArtworksContext } from '../../store';
 
@@ -59,23 +60,32 @@ export const SearchForm: React.FC = () => {
   };
 
   return (
-    <>
-      <div>
+    <div className="search-form">
+      <div className="search-form__input-container">
+        <img src={searchIcon} alt="Search icon" />
         <input
           type="text"
-          placeholder="Search for Artwork, Artist..."
+          placeholder="Search Art, Artist, Work..."
           value={searchTerm}
           onChange={e => handleSearchTermChange(e.target.value)}
           maxLength={60}
+          className="search-form__input"
         />
+        <button
+          onClick={handleClearSearchTerm}
+          disabled={searchTerm === ''}
+          className="search-form__clear-button"
+        >
+          X
+        </button>
       </div>
-      <button onClick={handleClearSearchTerm} disabled={searchTerm === ''}>
-        X
-      </button>
+
       {errors.length > 0 && (
-        <ul>
+        <ul className="search-form__error-list">
           {errors.map((error, index) => (
-            <li key={index}>{error}</li>
+            <li key={index} className="search-form__error">
+              {error}
+            </li>
           ))}
         </ul>
       )}
@@ -86,6 +96,6 @@ export const SearchForm: React.FC = () => {
           else :)
         </p>
       )}
-    </>
+    </div>
   );
 };

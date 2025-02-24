@@ -1,0 +1,50 @@
+@use '../abstracts/' as a;
+@use 'sass:color';
+
+.search-form {
+  @include a.flex-container($direction: column, $gap: a.rem(16));
+
+  width: a.rem(762);
+  &__input-container {
+    @include a.flex-container($align: center, $gap: a.rem(16));
+    width: a.rem(762);
+    height: a.rem(64);
+    padding: a.rem(16);
+    border-radius: a.rem(16);
+    background-color: color.scale(a.$color-gray, $lightness: 95%);
+  }
+
+  &__input {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__clear-button {
+    padding: a.rem(4) a.rem(10);
+    border: a.rem(1) solid a.$color-gray;
+    border-radius: a.rem(16);
+    background-color: transparent;
+
+    &:hover {
+      background-color: color.scale(a.$color-gray, $lightness: 80%);
+    }
+
+    &:disabled {
+      visibility: hidden;
+    }
+  }
+
+  &__error-list {
+    @include a.flex-container($direction: column, $gap: a.rem(4));
+  }
+
+  &__error {
+    font-size: a.rem(16);
+    color: a.$color-red;
+  }
+}
