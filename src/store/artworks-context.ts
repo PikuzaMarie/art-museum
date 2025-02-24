@@ -3,6 +3,7 @@ import { Artwork } from '../types';
 
 interface ArtworksContextProps {
   artworks: Artwork[];
+  setArtworks: (artworks: Artwork[]) => void;
   isFetching: boolean;
   error: string | null;
   sortCriteria: string;
@@ -11,6 +12,7 @@ interface ArtworksContextProps {
 
 export const ArtworksContext = createContext<ArtworksContextProps>({
   artworks: [],
+  setArtworks: () => {},
   isFetching: false,
   error: null,
   sortCriteria: 'title-asc',

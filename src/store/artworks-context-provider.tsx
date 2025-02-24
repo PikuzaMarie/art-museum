@@ -11,7 +11,7 @@ interface ArtworksContextProviderProps {
 export const ArtworksContextProvider: React.FC<
   ArtworksContextProviderProps
 > = ({ children }) => {
-  const { artworks, isFetching, error } = useFetch({
+  const { artworks, setArtworks, isFetching, error } = useFetch({
     fetchFn: fetchAvailableArtworks,
   });
 
@@ -27,6 +27,7 @@ export const ArtworksContextProvider: React.FC<
 
   const ctxValue = {
     artworks: sortedArtworks,
+    setArtworks,
     sortCriteria,
     setSortCriteria,
     isFetching,
