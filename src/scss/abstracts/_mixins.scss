@@ -1,7 +1,9 @@
 @use 'functions' as f;
+@use 'sass:map';
 
 $breakpoints: (
   'small': f.rem(420),
+  'medium': f.rem(720),
   'large': f.rem(1200),
 );
 

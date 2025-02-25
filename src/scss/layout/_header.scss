@@ -21,6 +21,10 @@
   &__nav {
     @include a.flex-container($align: center);
     width: fit-content;
+
+    @include a.breakpoint-down('medium') {
+      display: none;
+    }
   }
 
   &__navlist {

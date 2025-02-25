@@ -61,8 +61,8 @@
       border-color: a.$color-white;
     }
 
-    &_visible {
-      display: inline;
+    @include a.breakpoint-down('medium') {
+      display: flex;
     }
   }
 }
