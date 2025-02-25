@@ -46,9 +46,7 @@ export const ArtworkCard: React.FC<ArtworkCardProps> = ({
           <div className="artwork__heading">
             <div>
               <h5 className="artwork__title overflow">{artwork.title}</h5>
-              <span className="artwork__artist overflow">
-                {artwork.artist_title}
-              </span>
+              <p className="artwork__artist overflow">{artwork.artist_title}</p>
             </div>
             {artwork.is_public_domain ? (
               <span className="artwork__is-public">Public</span>
