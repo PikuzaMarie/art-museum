@@ -22,6 +22,7 @@ export const ArtworkCard: React.FC<ArtworkCardProps> = ({
     const updatedSearchParams = new URLSearchParams(search);
     updatedSearchParams.set('page', String(page));
 
+    window.scrollTo(0, 0);
     navigate({
       pathname: `/artwork/${artworkId}`,
       search: updatedSearchParams.toString(),
