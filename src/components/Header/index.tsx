@@ -5,6 +5,7 @@ import museumLogoLight from '../../assets/logos/museum-logo-light.svg';
 import homeIcon from '../../assets/icons/home-icon.svg';
 import bookmarkIcon from '../../assets/icons/bookmark-light-orange-icon.svg';
 import burgerIcon from '../../assets/icons/burger-icon.svg';
+import { useDetectOutsideClick } from '../../hooks/useDetectOutsideClick';
 
 interface HeaderProps {
   isHomePage: boolean;
@@ -21,6 +22,12 @@ const HeaderComponent: React.FC<HeaderProps> = ({ isHomePage }) => {
   const handleCloseSidebar = () => {
     setSidebarOpen(false);
   };
+
+  useDetectOutsideClick({
+    ref: sidebarRef,
+    isOpen: isSidebarOpen,
+    onClose: handleCloseSidebar,
+  });
 
   return (
     <header className="header">
