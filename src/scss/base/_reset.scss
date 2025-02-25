@@ -1,13 +1,19 @@
+@use '../abstracts/' as a;
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   min-height: 100vh;
 
-  scroll-behavior: smooth;
+  background-color: a.$color-page-background;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
