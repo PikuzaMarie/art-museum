@@ -1,3 +1,6 @@
+@use 'functions' as f;
+@use 'mixins' as m;
+
 $color-white: hsl(0, 0%, 100%);
 $color-gray: hsl(0, 0%, 22%);
 $color-red: hsl(0, 72%, 44%);
@@ -12,3 +15,13 @@ $color-button-backgorund: hsl(0, 0%, 98%);
 $color-start-lin-grad: hsl(0, 1%, 20%);
 $color-middle-lin-grad: hsl(0, 0%, 28%);
 $color-end-lin-grad: hsl(0, 0%, 16%);
+
+:root {
+  --base-vertical-flow: #{f.rem(120)};
+  --base-font-size: #{f.rem(16)};
+
+  @include m.breakpoint-down('medium') {
+    --base-vertical-flow: #{f.rem(60)};
+    --base-font-size: #{f.rem(22)};
+  }
+}
