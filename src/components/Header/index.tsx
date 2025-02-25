@@ -1,14 +1,27 @@
-import { memo } from 'react';
+import { memo, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Sidebar } from '../Sidebar';
 import museumLogoLight from '../../assets/logos/museum-logo-light.svg';
 import homeIcon from '../../assets/icons/home-icon.svg';
 import bookmarkIcon from '../../assets/icons/bookmark-light-orange-icon.svg';
-import { Link } from 'react-router-dom';
+import burgerIcon from '../../assets/icons/burger-icon.svg';
 
 interface HeaderProps {
   isHomePage: boolean;
 }
 
 const HeaderComponent: React.FC<HeaderProps> = ({ isHomePage }) => {
+  const sidebarRef = useRef(null);
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
+  const handleOpenSidebar = () => {
+    setSidebarOpen(true);
+  };
+
+  const handleCloseSidebar = () => {
+    setSidebarOpen(false);
+  };
+
   return (
     <header className="header">
       <div className="wrapper">
@@ -34,6 +47,15 @@ const HeaderComponent: React.FC<HeaderProps> = ({ isHomePage }) => {
           </ul>
         </nav>
       </div>
+      <button onClick={handleOpenSidebar}>
+        <img src={burgerIcon} alt="Menu icon" />
+      </button>
+      <Sidebar
+        isHomePage={isHomePage}
+        ref={sidebarRef}
+        isOpen={isSidebarOpen}
+        onClose={handleCloseSidebar}
+      />
     </header>
   );
 };
