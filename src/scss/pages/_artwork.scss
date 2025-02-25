@@ -6,6 +6,10 @@
     $gap: var(--base-vertical-flow)
   );
 
+  .artwork-container {
+    @include a.flex-container($direction: column, $gap: a.rem(16));
+  }
+
   .artwork-details {
     @include a.flex-container($gap: a.rem(80));
 

@@ -65,4 +65,10 @@
       display: flex;
     }
   }
+
+  &-navigate {
+    width: a.rem(80);
+    height: a.rem(60);
+    font-size: a.rem(16);
+  }
 }

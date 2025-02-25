@@ -19,8 +19,13 @@ export const ArtworkPage: React.FC = () => {
   return (
     <PageLayout isHomePage={false} className="artwork-page">
       {currentArtwork ? (
-        <>
-          <button onClick={() => navigate(-1)}>Back</button>
+        <div className="artwork-container">
+          <button
+            onClick={() => navigate(-1)}
+            className="button button-navigate"
+          >
+            Back
+          </button>
           <article className="artwork-details">
             <div className="artwork-details__image-container">
               <img
@@ -78,7 +83,7 @@ export const ArtworkPage: React.FC = () => {
               </div>
             </div>
           </article>
-        </>
+        </div>
       ) : (
         <div className="wrapper__fallback-content">
           <p>Artwork not found!</p>
