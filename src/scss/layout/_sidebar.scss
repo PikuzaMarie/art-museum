@@ -21,11 +21,11 @@
   }
 
   &__navlist {
-    @include a.flex-container($direction: column, $gap: a.rem(24));
+    @include a.flex-container($direction: column, $gap: a.rem(32));
 
     &__link {
       @include a.flex-container($align: center, $gap: a.rem(16));
-      font-size: a.rem(24);
+      font-size: calc(var(--base-font-size) * 2);
       font-weight: 300;
       color: a.$color-white;
     }

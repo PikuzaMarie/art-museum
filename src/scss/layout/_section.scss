@@ -14,14 +14,14 @@
   }
 
   &__subtitle {
-    font-size: a.rem(16);
+    font-size: var(--base-font-size);
     font-weight: 400;
 
     color: a.$color-light-orange;
   }
 
   &__title {
-    font-size: a.rem(32);
+    font-size: calc(var(--base-font-size) * 1.75); // to fit in one line
     font-weight: 400;
   }
 }

@@ -16,6 +16,7 @@
 
   &__input {
     width: 100%;
+    font-size: var(--base-font-size);
     border: none;
     background-color: transparent;
 
@@ -44,7 +45,7 @@
   }
 
   &__error {
-    font-size: a.rem(16);
+    font-size: var(--base-font-size);
     color: a.$color-red;
   }
 }

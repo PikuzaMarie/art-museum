@@ -39,7 +39,7 @@
     }
 
     &__title {
-      font-size: a.rem(32);
+      font-size: calc(var(--base-font-size) * 2);
       font-weight: 400;
 
       &_first {
@@ -54,7 +54,7 @@
     }
 
     &__reference-number {
-      font-size: a.rem(16);
+      font-size: var(--base-font-size);
       font-weight: 700;
     }
 
@@ -67,7 +67,7 @@
     }
 
     &__item {
-      font-size: a.rem(16);
+      font-size: var(--base-font-size);
       list-style-type: none;
 
       &_highlighted {

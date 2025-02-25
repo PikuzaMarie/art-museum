@@ -5,17 +5,13 @@
   align-self: flex-start;
 
   &__label {
-    font-size: a.rem(18);
+    font-size: var(--base-font-size);
   }
 
   &__select {
     padding: a.rem(4);
     border: a.rem(1) solid a.$color-gray;
     border-radius: a.rem(8);
-    font-size: a.rem(16);
-  }
-
-  &__option {
-    font-size: a.rem(16);
+    font-size: var(--base-font-size);
   }
 }

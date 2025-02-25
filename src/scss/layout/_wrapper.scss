@@ -46,8 +46,8 @@
   }
 
   &__fallback-content {
-    margin-top: 2rem;
-    font-size: 1.5rem;
+    margin-top: a.rem(32);
+    font-size: var(--base-font-size);
     text-align: center;
 
     a {
