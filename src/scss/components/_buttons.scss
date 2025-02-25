@@ -1,4 +1,5 @@
 @use '../abstracts/' as a;
+@use 'sass:color';
 
 .button {
   @include a.flex-container($justify: center, $align: center);
@@ -16,12 +17,12 @@
 
   &:hover {
     color: a.$color-gray;
-    background-color: lighten(a.$color-light-orange, 30%);
+    background-color: color.scale(a.$color-light-orange, $lightness: 30%);
     border-color: a.$color-light-orange;
   }
 
   &.active {
-    background-color: lighten(a.$color-light-orange, 30%);
+    background-color: color.scale(a.$color-light-orange, $lightness: 30%);
     border-color: a.$color-light-orange;
   }
 
