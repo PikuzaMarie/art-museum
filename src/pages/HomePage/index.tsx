@@ -1,4 +1,5 @@
-import { useCallback, useContext, useState } from 'react';
+import { useCallback, useContext } from 'react';
+import { useLocation, useNavigate } from 'react-router';
 import { PageLayout } from '../../components/PageLayout';
 import { SectionLayout } from '../../components/SectionLayout';
 import { Loader } from '../../components/Loader';
@@ -9,7 +10,13 @@ import { SortControls } from '../../components/SortControls';
 import { SearchForm } from '../../components/SearchForm';
 
 export const HomePage: React.FC = () => {
-  const [pageIndex, setPageIndex] = useState(0);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { search } = location;
+
+  const searchParams = new URLSearchParams(search);
+  const page = searchParams.get('page') || 1;
+  const pageIndex = Number(page) - 1;
 
   const {
     artworks,
@@ -35,21 +42,20 @@ export const HomePage: React.FC = () => {
     [setSortCriteria],
   );
 
-  const handleGoToFirstPage = useCallback(() => {
-    setPageIndex(0);
-  }, []);
+  const handlePageChange = useCallback(
+    (newPage: number) => {
+      const newSearchParams = new URLSearchParams(search);
+      newSearchParams.set('page', String(newPage));
+      navigate({ search: newSearchParams.toString() });
+    },
+    [search, navigate],
+  );
 
-  const handleGoToPreviousPage = useCallback(() => {
-    setPageIndex(prevPageIndex => Math.max(prevPageIndex - 1, 0));
-  }, []);
-
-  const handleGoToNextPage = useCallback(() => {
-    setPageIndex(prevPageIndex => Math.min(prevPageIndex + 1, lastPageIndex));
-  }, [lastPageIndex]);
-
-  const handleGoToLastPage = useCallback(() => {
-    setPageIndex(lastPageIndex);
-  }, [lastPageIndex]);
+  const handleGoToFirstPage = () => handlePageChange(1);
+  const handleGoToPreviousPage = () => handlePageChange(Math.max(pageIndex, 1));
+  const handleGoToNextPage = () =>
+    handlePageChange(Math.min(pageIndex + 2, lastPageIndex + 1));
+  const handleGoToLastPage = () => handlePageChange(lastPageIndex + 1);
 
   return (
     <PageLayout isHomePage={true} className="home">

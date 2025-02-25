@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Artwork } from '../../types';
 import { FavoriteButton } from '../FavoriteButton';
 
@@ -11,20 +11,37 @@ export const ArtworkCard: React.FC<ArtworkCardProps> = ({
   artwork,
   variant,
 }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { search } = location;
+
+  const searchParams = new URLSearchParams(search);
+  const page = searchParams.get('page') || 1;
+
+  const goToArtworkPage = (artworkId: number) => {
+    const updatedSearchParams = new URLSearchParams(search);
+    updatedSearchParams.set('page', String(page));
+
+    navigate({
+      pathname: `/artwork/${artworkId}`,
+      search: updatedSearchParams.toString(),
+    });
+  };
+
   return (
     <article className={`artwork ${variant === 'small' && 'small'}`}>
       <figure className="artwork__image-container">
-        <Link to={`/artwork/${artwork.id}`}>
+        <a onClick={() => goToArtworkPage(artwork.id)}>
           <img
             src={`https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg`}
             alt={artwork.thumbnail?.alt_text ?? artwork.title}
             className="artwork__image"
           />
-        </Link>
+        </a>
       </figure>
 
       <div className="artwork__description">
-        <Link to={`/artwork/${artwork.id}`}>
+        <a onClick={() => goToArtworkPage(artwork.id)}>
           <div className="artwork__heading">
             <div>
               <h5 className="artwork__title overflow">{artwork.title}</h5>
@@ -36,7 +53,7 @@ export const ArtworkCard: React.FC<ArtworkCardProps> = ({
               <span className="artwork__is-public">Public</span>
             ) : undefined}
           </div>
-        </Link>
+        </a>
         <FavoriteButton artwork={artwork} />
       </div>
     </article>
