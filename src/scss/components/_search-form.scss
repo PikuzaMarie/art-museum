@@ -3,11 +3,15 @@
 
 .search-form {
   @include a.flex-container($direction: column, $gap: a.rem(16));
-
   width: a.rem(762);
+
+  @include a.breakpoint-down('medium') {
+    width: a.rem(380);
+  }
+
   &__input-container {
     @include a.flex-container($align: center, $gap: a.rem(16));
-    width: a.rem(762);
+    width: 100%;
     height: a.rem(64);
     padding: a.rem(16);
     border-radius: a.rem(16);

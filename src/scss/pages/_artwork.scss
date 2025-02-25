@@ -9,10 +9,19 @@
   .artwork-details {
     @include a.flex-container($gap: a.rem(80));
 
+    @include a.breakpoint-down('medium') {
+      flex-direction: column;
+      gap: a.rem(40);
+    }
+
     &__image-container {
       position: relative;
       max-width: a.rem(497);
       max-height: a.rem(570);
+
+      @include a.breakpoint-down('medium') {
+        max-width: a.rem(400);
+      }
     }
 
     &__image {
@@ -32,6 +41,10 @@
 
     &__description {
       @include a.flex-container($direction: column, $gap: a.rem(172));
+
+      @include a.breakpoint-down('medium') {
+        gap: a.rem(86);
+      }
     }
 
     &__heading {
@@ -44,6 +57,11 @@
 
       &_first {
         margin-bottom: a.rem(32);
+
+        @include a.breakpoint-down('medium') {
+          font-size: a.rem(36);
+          margin-bottom: a.rem(16);
+        }
       }
     }
 
@@ -51,15 +69,28 @@
       margin-bottom: a.rem(16);
       font-size: a.rem(24);
       color: a.$color-light-orange;
+
+      @include a.breakpoint-down('medium') {
+        font-size: a.rem(28);
+        margin-bottom: a.rem(8);
+      }
     }
 
     &__reference-number {
       font-size: var(--base-font-size);
       font-weight: 700;
+
+      @include a.breakpoint-down('medium') {
+        font-size: a.rem(20);
+      }
     }
 
     &__overview {
       @include a.flex-container($direction: column, $gap: a.rem(32));
+
+      @include a.breakpoint-down('medium') {
+        gap: a.rem(16);
+      }
     }
 
     &__list {

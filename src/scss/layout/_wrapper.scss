@@ -23,6 +23,11 @@
     text-transform: capitalize;
     color: a.$color-gray;
 
+    @include a.breakpoint-down('medium') {
+      width: a.rem(400);
+      font-size: a.rem(54);
+    }
+
     &_accent {
       color: a.$color-accent-orange;
       width: fit-content;
@@ -37,6 +42,11 @@
       @include a.flex-container($justify: center, $align: center);
       width: a.rem(72);
       height: a.rem(72);
+
+      @include a.breakpoint-down('medium') {
+        width: a.rem(64);
+        height: a.rem(64);
+      }
 
       img {
         width: a.rem(32);

@@ -4,6 +4,10 @@
   @include a.flex-container($direction: column, $align: center);
   width: a.rem(387);
 
+  @include a.breakpoint-down('small') {
+    width: a.rem(350);
+  }
+
   &:hover {
     transform: scale(103%);
   }
@@ -21,11 +25,7 @@
 
   &__description {
     position: relative;
-    @include a.flex-container(
-      $justify: space-between,
-      $align: center,
-      $gap: a.rem(80)
-    );
+    @include a.flex-container($justify: space-between, $align: center);
 
     margin: 0 auto;
     width: a.rem(350);
@@ -40,19 +40,19 @@
 
   &__heading {
     @include a.flex-container($direction: column, $gap: a.rem(8));
-    max-width: a.rem(160);
+    max-width: a.rem(224);
   }
 
   &__title {
     font-size: var(--base-font-size);
     font-weight: 500;
-    letter-spacing: -3%;
+    letter-spacing: -0.5px;
   }
 
   &__artist {
     font-size: calc(var(--base-font-size) - 2px);
     font-weight: 400;
-    letter-spacing: -1%;
+    letter-spacing: -0.5px;
     color: a.$color-light-orange;
   }
 
@@ -72,7 +72,7 @@
   background-color: a.$color-white;
 
   .artwork__image-container {
-    max-width: a.rem(80);
+    width: a.rem(80);
     height: a.rem(80);
   }
 
