@@ -1,9 +1,16 @@
 @use '../abstracts/' as a;
 
 .home {
-  @include a.flex-container($direction: column, $gap: a.rem(120));
+  @include a.flex-container(
+    $direction: column,
+    $gap: var(--base-vertical-flow)
+  );
 
   .artwork-list {
-    @include a.flex-container($wrap: wrap, $gap: a.rem(60), $justify: center);
+    @include a.flex-container(
+      $wrap: wrap,
+      $gap: calc(var(--base-vertical-flow) / 2),
+      $justify: center
+    );
   }
 }

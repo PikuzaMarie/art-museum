@@ -1,7 +1,10 @@
 @use '../abstracts/' as a;
 
 .favorites {
-  @include a.flex-container($direction: column, $gap: a.rem(120));
+  @include a.flex-container(
+    $direction: column,
+    $gap: var(--base-vertical-flow)
+  );
 
   .artwork-list {
     @include a.flex-container($wrap: wrap, $gap: a.rem(16), $align: center);

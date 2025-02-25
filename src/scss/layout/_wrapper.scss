@@ -62,10 +62,10 @@ main .wrapper {
     $direction: column,
     $justify: center,
     $align: center,
-    $gap: a.rem(120)
+    $gap: calc(var(--base-vertical-flow))
   );
   min-height: calc(
-    100vh - a.rem(128) * 2 - a.rem(120) * 2
+    100vh - a.rem(128) * 2 - var(--base-vertical-flow) * 2
   ); //window height (100vh) - footer and header height (128px * 2) - vertical flow height (120px * 2)
 }
 
