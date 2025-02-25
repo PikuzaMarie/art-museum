@@ -39,4 +39,30 @@
     width: a.rem(60);
     height: a.rem(60);
   }
+
+  &-close {
+    align-self: flex-end;
+    background-color: a.$color-gray;
+    border-color: transparent;
+
+    &:hover {
+      background-color: transparent;
+      border-color: a.$color-light-orange;
+    }
+  }
+
+  &-burger {
+    display: none;
+    background-color: transparent;
+    border-color: transparent;
+
+    &:hover {
+      background-color: transparent;
+      border-color: a.$color-white;
+    }
+
+    &_visible {
+      display: inline;
+    }
+  }
 }

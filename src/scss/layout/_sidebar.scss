@@ -1,0 +1,33 @@
+@use '../abstracts/' as a;
+@use 'sass:color';
+
+.sidebar {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: a.rem(420);
+  padding: a.rem(36);
+  z-index: 999;
+  background-color: a.$color-gray;
+
+  &.sidebar_visible {
+    @include a.flex-container(
+      $direction: column,
+      $align: center,
+      $gap: a.rem(64)
+    );
+  }
+
+  &__navlist {
+    @include a.flex-container($direction: column, $gap: a.rem(24));
+
+    &__link {
+      @include a.flex-container($align: center, $gap: a.rem(16));
+      font-size: a.rem(24);
+      font-weight: 300;
+      color: a.$color-white;
+    }
+  }
+}

@@ -53,10 +53,10 @@ const HeaderComponent: React.FC<HeaderProps> = ({ isHomePage }) => {
             </li>
           </ul>
         </nav>
+        <button onClick={handleOpenSidebar} className="button button-burger">
+          <img src={burgerIcon} alt="Menu icon" />
+        </button>
       </div>
-      <button onClick={handleOpenSidebar}>
-        <img src={burgerIcon} alt="Menu icon" />
-      </button>
       <Sidebar
         isHomePage={isHomePage}
         ref={sidebarRef}

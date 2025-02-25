@@ -18,22 +18,22 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onClose,
 }) => {
   return (
-    <aside ref={ref} style={{ display: isOpen ? 'block' : 'none' }}>
-      <button onClick={onClose}>
+    <aside ref={ref} className={`sidebar ${isOpen ? 'sidebar_visible' : ''}`}>
+      <button onClick={onClose} className="button button-close">
         <img src={clearIcon} alt="Clear icon" />
       </button>
       <nav>
-        <ul className="header__navlist">
+        <ul className="sidebar__navlist">
           {!isHomePage && (
             <li>
-              <Link to="/" className="header__navlist__link">
+              <Link to="/" className="sidebar__navlist__link">
                 <img src={homeIcon} alt="Home icon" />
                 <span>Home</span>
               </Link>
             </li>
           )}
           <li>
-            <Link to="/favorites" className="header__navlist__link">
+            <Link to="/favorites" className="sidebar__navlist__link">
               <img src={bookmarkIcon} alt="Bookmark icon" />
               <span>Your favorites</span>
             </Link>
