@@ -68,7 +68,7 @@ export const HomePage: React.FC = () => {
           />
           <div className="artwork-list">
             {currentArtworks.map(artwork => (
-              <ArtworkCard key={artwork.id} artwork={artwork} variant="large" />
+              <ArtworkCard key={artwork.id} artwork={artwork} />
             ))}
           </div>
           <Pagination

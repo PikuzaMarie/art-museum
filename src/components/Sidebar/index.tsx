@@ -18,7 +18,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onClose,
 }) => {
   return (
-    <aside ref={ref} className={`sidebar ${isOpen ? 'sidebar_visible' : ''}`}>
+    <aside ref={ref} className={`sidebar ${isOpen && 'sidebar_visible'}`}>
       <button onClick={onClose} className="button button-close">
         <img src={clearIcon} alt="Clear icon" />
       </button>

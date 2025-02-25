@@ -24,7 +24,7 @@ export const FavoriteButton: React.FC<FavoriteButtonProps> = ({ artwork }) => {
   return (
     <button
       onClick={handleFavoriteClick}
-      className={`button button-favorite ${isFavorite ? 'active' : undefined}`}
+      className={`button button-favorite ${isFavorite && 'active'}`}
     >
       <img src={bookmarkIcon} alt="Bookmark icon" />
     </button>
