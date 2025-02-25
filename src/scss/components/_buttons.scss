@@ -21,6 +21,13 @@
     border-color: a.$color-light-orange;
   }
 
+  @media (hover: none) {
+    &:hover {
+      background-color: transparent;
+      border-color: a.$color-card-border;
+    }
+  }
+
   &.active {
     background-color: color.scale(a.$color-light-orange, $lightness: 30%);
     border-color: a.$color-light-orange;
