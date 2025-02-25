@@ -5,7 +5,7 @@
   width: a.rem(387);
 
   @include a.breakpoint-down('small') {
-    width: a.rem(350);
+    width: a.rem(300);
   }
 
   &:hover {
@@ -15,6 +15,10 @@
   &__image-container {
     max-width: a.rem(387);
     height: a.rem(444);
+
+    @include a.breakpoint-down('small') {
+      max-width: a.rem(300);
+    }
   }
 
   &__image {
@@ -36,6 +40,11 @@
     bottom: 40px;
 
     background-color: a.$color-page-background;
+
+    @include a.breakpoint-down('small') {
+      width: a.rem(310);
+      padding: a.rem(8);
+    }
   }
 
   &__heading {

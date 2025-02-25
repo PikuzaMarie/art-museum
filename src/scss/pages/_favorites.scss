@@ -7,11 +7,10 @@
   );
 
   .artwork-list {
-    @include a.flex-container(
-      $wrap: wrap,
-      $align: center,
-      $justify: center,
-      $gap: a.rem(16)
-    );
+    @include a.flex-container($wrap: wrap, $align: center, $gap: a.rem(16));
+
+    @include a.breakpoint-down('small') {
+      justify-content: center;
+    }
   }
 }

@@ -6,7 +6,7 @@
   width: a.rem(762);
 
   @include a.breakpoint-down('medium') {
-    width: a.rem(380);
+    width: 100%;
   }
 
   &__input-container {

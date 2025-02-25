@@ -8,6 +8,10 @@
   margin: 0 auto;
   padding: 0 a.rem(16);
 
+  @include a.breakpoint-down('xsmall') {
+    padding: 0 a.rem(10);
+  }
+
   & .title {
     @include a.flex-container(
       $direction: column,
@@ -24,8 +28,12 @@
     color: a.$color-gray;
 
     @include a.breakpoint-down('medium') {
-      width: a.rem(400);
+      width: 100%;
       font-size: a.rem(54);
+    }
+
+    @include a.breakpoint-down('small') {
+      font-size: a.rem(44);
     }
 
     &_accent {

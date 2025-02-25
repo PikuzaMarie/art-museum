@@ -8,6 +8,10 @@
     $gap: a.rem(32)
   );
 
+  @include a.breakpoint-down('xsmall') {
+    width: a.rem(300);
+  }
+
   &__heading {
     @include a.flex-container($direction: column);
     text-align: center;
