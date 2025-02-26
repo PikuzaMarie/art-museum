@@ -14,7 +14,7 @@ interface Thumbnail {
 export interface Artwork {
   id: number;
   title: string;
-  artist_title: string;
+  artist_title: string | null;
   main_reference_number: string;
   date_display: string;
   place_of_origin: string;
