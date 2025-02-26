@@ -4,6 +4,7 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import tseslint from 'typescript-eslint';
 import eslintConfigPrettier from 'eslint-config-prettier';
+import eslintPuginJest from 'eslint-plugin-jest';
 
 export default tseslint.config(
   { ignores: ['dist'] },
@@ -12,7 +13,7 @@ export default tseslint.config(
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
       ecmaVersion: 2020,
-      globals: globals.browser,
+      globals: { ...globals.browser, ...globals.jest },
       parserOptions: {
         projectService: true,
         tsconfigRootDir: import.meta.dirname,
@@ -22,10 +23,10 @@ export default tseslint.config(
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
       eslintConfigPrettier,
+      eslintPuginJest,
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
-      'jest-globals': true,
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
