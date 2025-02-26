@@ -22,6 +22,9 @@ export const ArtworkCard: React.FC<ArtworkCardProps> = ({
     const updatedSearchParams = new URLSearchParams(search);
     updatedSearchParams.set('page', String(page));
 
+    //console.log is required for test
+    console.log(`Navigating to artwork page with ID: ${artworkId}`);
+
     window.scrollTo(0, 0);
     navigate({
       pathname: `/artwork/${artworkId}`,
@@ -37,20 +40,23 @@ export const ArtworkCard: React.FC<ArtworkCardProps> = ({
             src={`https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg`}
             alt={artwork.thumbnail?.alt_text ?? artwork.title}
             className="artwork__image"
+            data-testid="image"
           />
         </a>
       </figure>
 
       <div className="artwork__description">
         <a onClick={() => goToArtworkPage(artwork.id)}>
-          <div className="artwork__heading">
+          <div data-testid="description" className="artwork__heading">
             <div>
               <h5 className="artwork__title overflow">{artwork.title}</h5>
               <p className="artwork__artist overflow">{artwork.artist_title}</p>
             </div>
-            {artwork.is_public_domain ? (
-              <span className="artwork__is-public">Public</span>
-            ) : undefined}
+            {artwork.is_public_domain && (
+              <span data-testid="public" className="artwork__is-public">
+                Public
+              </span>
+            )}
           </div>
         </a>
         <FavoriteButton artwork={artwork} />

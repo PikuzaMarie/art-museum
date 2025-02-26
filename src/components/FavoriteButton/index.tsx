@@ -2,6 +2,10 @@ import { useContext } from 'react';
 import { FavoritesContext } from '../../store';
 import { Artwork } from '../../types';
 import bookmarkIcon from '../../assets/icons/bookmark-icon.svg';
+// //uncomment to run tests for ArtworkCard
+// const bookmarkIcon: string =
+
+//   require('../../assets/icons/bookmark-icon.svg').default;
 
 interface FavoriteButtonProps {
   artwork: Artwork;
