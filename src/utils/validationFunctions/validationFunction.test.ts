@@ -1,16 +1,14 @@
 import {
-  isNotEmpty,
-  hasLettersOrNumbers,
-  validateInput,
-  isNotEmptyErrorValue,
-  hasLettersOrNumbersErrorValue,
-} from './index';
+  IS_NOT_EMPTY_ERROR_VALUE,
+  HAS_LETTERS_OR_NUMBERS_ERROR_VALUE,
+} from '../../constants';
+import { isNotEmpty, hasLettersOrNumbers, validateInput } from './index';
 
 describe('isNotEmpty', () => {
   it('should return an error message if the input is less than 3 characters', () => {
-    expect(isNotEmpty('')).toEqual(isNotEmptyErrorValue);
-    expect(isNotEmpty('a')).toEqual(isNotEmptyErrorValue);
-    expect(isNotEmpty('ab')).toEqual(isNotEmptyErrorValue);
+    expect(isNotEmpty('')).toEqual(IS_NOT_EMPTY_ERROR_VALUE);
+    expect(isNotEmpty('a')).toEqual(IS_NOT_EMPTY_ERROR_VALUE);
+    expect(isNotEmpty('ab')).toEqual(IS_NOT_EMPTY_ERROR_VALUE);
   });
 
   it('should return an empty array if the input has at least 3 characters', () => {
@@ -21,7 +19,9 @@ describe('isNotEmpty', () => {
 
 describe('hasLettersOrNumbers', () => {
   it('should return an error message if the input does not include letters or numbers', () => {
-    expect(hasLettersOrNumbers('**/')).toEqual(hasLettersOrNumbersErrorValue);
+    expect(hasLettersOrNumbers('**/')).toEqual(
+      HAS_LETTERS_OR_NUMBERS_ERROR_VALUE,
+    );
   });
 
   it('should return an empty array if the input includes letters or numbers', () => {
@@ -39,12 +39,12 @@ describe('validateInput', () => {
   });
 
   it('should return errors from isNotEmpty and hasLettersOrNumbers if input is invalid', () => {
-    expect(validateInput('ab')).toEqual(isNotEmptyErrorValue);
-    expect(validateInput('a!')).toEqual(isNotEmptyErrorValue);
-    expect(validateInput('!!!')).toEqual(hasLettersOrNumbersErrorValue);
+    expect(validateInput('ab')).toEqual(IS_NOT_EMPTY_ERROR_VALUE);
+    expect(validateInput('a!')).toEqual(IS_NOT_EMPTY_ERROR_VALUE);
+    expect(validateInput('!!!')).toEqual(HAS_LETTERS_OR_NUMBERS_ERROR_VALUE);
     expect(validateInput('!!')).toEqual([
-      ...isNotEmptyErrorValue,
-      ...hasLettersOrNumbersErrorValue,
+      ...IS_NOT_EMPTY_ERROR_VALUE,
+      ...HAS_LETTERS_OR_NUMBERS_ERROR_VALUE,
     ]);
   });
 

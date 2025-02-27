@@ -2,30 +2,8 @@ import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { ArtworkCard } from './index';
+import { MOCK_ARTWORK, MOCK_ARTWORK_NOT_PUBLIC } from '../../constants';
 import { Artwork } from '../../types';
-
-const mockArtwork: Artwork = {
-  id: 18,
-  title: 'Apples and computers',
-  artist_title: 'Unknown Malevich',
-  main_reference_number: '1695.23',
-  date_display: '1890s',
-  place_of_origin: 'Arctics',
-  credit_line: 'Favorite private collection',
-  dimensions: '190x100 and some other info',
-  image_id: 'imageid8526',
-  thumbnail: {
-    lqip: 'lqip2642',
-    width: 190,
-    height: 100,
-    alt_text: 'Alt text for Apples and Computers',
-  },
-  is_public_domain: true,
-};
-
-const mockArtworkPublicFalse: Partial<Artwork> = {
-  is_public_domain: false,
-};
 
 describe('ArtworkCard', () => {
   beforeAll(() => {
@@ -35,7 +13,7 @@ describe('ArtworkCard', () => {
   beforeEach(() =>
     render(
       <MemoryRouter>
-        <ArtworkCard artwork={mockArtwork} />
+        <ArtworkCard artwork={MOCK_ARTWORK} />
       </MemoryRouter>,
     ),
   );
@@ -85,7 +63,7 @@ describe('ArtworkCard', () => {
     fireEvent.click(imageElem);
 
     expect(goToArtworkPageSpy).toHaveBeenCalledWith(
-      `Navigating to artwork page with ID: ${mockArtwork.id}`,
+      `Navigating to artwork page with ID: ${MOCK_ARTWORK.id}`,
     );
 
     goToArtworkPageSpy.mockRestore();
@@ -99,7 +77,7 @@ describe('ArtworkCard', () => {
     fireEvent.click(divElem);
 
     expect(goToArtworkPageSpy).toHaveBeenCalledWith(
-      `Navigating to artwork page with ID: ${mockArtwork.id}`,
+      `Navigating to artwork page with ID: ${MOCK_ARTWORK.id}`,
     );
 
     goToArtworkPageSpy.mockRestore();
@@ -110,7 +88,7 @@ describe('ArtworkCard with false value of is_public_domain', () => {
   it('should render ArtworkCard without Public field', () => {
     render(
       <MemoryRouter>
-        <ArtworkCard artwork={mockArtworkPublicFalse as Artwork} />
+        <ArtworkCard artwork={MOCK_ARTWORK_NOT_PUBLIC as Artwork} />
       </MemoryRouter>,
     );
     const publicField = screen.queryByTestId('public');
@@ -122,7 +100,7 @@ describe('ArtworkCard with prop: variant="small"', () => {
   it('should render ArtworkCard with class "artwork small"', () => {
     render(
       <MemoryRouter>
-        <ArtworkCard artwork={mockArtwork} variant="small" />
+        <ArtworkCard artwork={MOCK_ARTWORK} variant="small" />
       </MemoryRouter>,
     );
     const artworkElem = screen.getByRole('article');

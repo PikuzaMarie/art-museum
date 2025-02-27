@@ -1,27 +1,23 @@
 import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { FavoritesContext } from '../../store';
-import { Artwork } from '../../types';
 import { FavoriteButton } from './index';
-
-const mockFavoriteArtwork: Partial<Artwork> = {
-  id: 18,
-};
-
-const mockNotFavoriteArtwork: Partial<Artwork> = {
-  id: 5,
-};
+import {
+  MOCK_ARTWORK_FAVORITE,
+  MOCK_ARTWORK_NOT_FAVORITE,
+} from '../../constants';
+import { Artwork } from '../../types';
 
 it('should handle favorite add', () => {
   const mockFavoriteContextValue = {
-    favoriteArtworks: [mockFavoriteArtwork as Artwork],
+    favoriteArtworks: [MOCK_ARTWORK_FAVORITE as Artwork],
     handleFavoriteAdd: jest.fn(),
     handleFavoriteRemove: jest.fn(),
   };
 
   render(
     <FavoritesContext.Provider value={mockFavoriteContextValue}>
-      <FavoriteButton artwork={mockNotFavoriteArtwork as Artwork} />
+      <FavoriteButton artwork={MOCK_ARTWORK_NOT_FAVORITE as Artwork} />
     </FavoritesContext.Provider>,
   );
 
@@ -29,21 +25,21 @@ it('should handle favorite add', () => {
   fireEvent.click(buttonElem);
 
   expect(mockFavoriteContextValue.handleFavoriteAdd).toHaveBeenCalledWith(
-    mockNotFavoriteArtwork,
+    MOCK_ARTWORK_NOT_FAVORITE,
   );
   expect(mockFavoriteContextValue.handleFavoriteRemove).not.toHaveBeenCalled();
 });
 
 it('should handle favorite remove', () => {
   const mockFavoriteContextValue = {
-    favoriteArtworks: [mockFavoriteArtwork as Artwork],
+    favoriteArtworks: [MOCK_ARTWORK_FAVORITE as Artwork],
     handleFavoriteAdd: jest.fn(),
     handleFavoriteRemove: jest.fn(),
   };
 
   render(
     <FavoritesContext.Provider value={mockFavoriteContextValue}>
-      <FavoriteButton artwork={mockFavoriteArtwork as Artwork} />
+      <FavoriteButton artwork={MOCK_ARTWORK_FAVORITE as Artwork} />
     </FavoritesContext.Provider>,
   );
 
@@ -51,7 +47,7 @@ it('should handle favorite remove', () => {
   fireEvent.click(buttonElem);
 
   expect(mockFavoriteContextValue.handleFavoriteRemove).toHaveBeenCalledWith(
-    mockFavoriteArtwork.id,
+    MOCK_ARTWORK_FAVORITE.id,
   );
   expect(mockFavoriteContextValue.handleFavoriteAdd).not.toHaveBeenCalled();
 });

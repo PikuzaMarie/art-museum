@@ -1,7 +1,5 @@
+import { MOCK_URL, MOCK_DATA } from '../../constants';
 import { fetchData } from './index';
-
-const mockURL = new URL('https://example.com/api/v1/data');
-const mockData = { data: 'mock data' };
 
 describe('fetchData', () => {
   beforeEach(() => {
@@ -11,11 +9,11 @@ describe('fetchData', () => {
   it('should return data when fetch is successful', async () => {
     global.fetch = jest.fn().mockResolvedValue({
       ok: true,
-      json: jest.fn().mockResolvedValue(mockData),
+      json: jest.fn().mockResolvedValue(MOCK_DATA),
     });
 
-    const data = await fetchData(mockURL);
-    expect(data).toEqual(mockData);
+    const data = await fetchData(MOCK_URL);
+    expect(data).toEqual(MOCK_DATA);
   });
 
   it('should throw an error when response is not ok', async () => {
@@ -24,7 +22,7 @@ describe('fetchData', () => {
       status: 500,
     });
 
-    await expect(fetchData(mockURL)).rejects.toThrow(
+    await expect(fetchData(MOCK_URL)).rejects.toThrow(
       'Failed to fetch artworks. HTTP Error: 500',
     );
   });

@@ -1,24 +1,13 @@
 import { buildURL } from '../utils/buildURL';
 import { fetchData } from '../utils/fetchData';
+import {
+  ARTWORKS_ENDPOINT,
+  ARTWORKS_SEARCH_ENDPOINT,
+  SERVER_URL,
+  NUMBER_OF_ITEMS,
+  REQUESTED_FIELDS,
+} from '../constants';
 import { ArtworksResponse, SearchResponse } from '../types';
-
-const SERVER_URL = 'https://api.artic.edu';
-const ARTWORKS_ENDPOINT = '/api/v1/artworks';
-const ARTWORKS_SEARCH_ENDPOINT = ARTWORKS_ENDPOINT + '/search';
-const NUMBER_OF_ITEMS = 100;
-const REQUESTED_FIELDS = [
-  'id',
-  'title',
-  'artist_title',
-  'main_reference_number',
-  'date_display',
-  'place_of_origin',
-  'credit_line',
-  'dimensions',
-  'image_id',
-  'thumbnail',
-  'is_public_domain',
-].join(',');
 
 export async function fetchAvailableArtworks() {
   const url = buildURL({
