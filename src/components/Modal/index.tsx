@@ -1,4 +1,4 @@
-import closeIcon from '../../assets/icons/clear-icon.svg';
+import clearIcon from '../../assets/icons/clear-icon.svg';
 
 interface ModalProps {
   imageId: string;
@@ -8,17 +8,18 @@ interface ModalProps {
 
 export const Modal: React.FC<ModalProps> = ({ imageId, altText, onClose }) => {
   return (
-    <div onClick={onClose}>
-      <div>
-        <p>{altText}</p>
-        <button onClick={onClose}>
-          <img src={closeIcon} alt="Close icon" />
+    <div onClick={onClose} className="modal__overlay">
+      <div className="modal__header">
+        <p className="modal__alt-text">{altText}</p>
+        <button onClick={onClose} className="button button-close-modal">
+          <img src={clearIcon} alt="Clear icon" />
         </button>
       </div>
-      <div onClick={e => e.stopPropagation()}>
+      <div onClick={e => e.stopPropagation()} className="modal__content">
         <img
           src={`https://www.artic.edu/iiif/2/${imageId}/full/843,/0/default.jpg`}
           alt="Zoomed artwork image"
+          className="modal__image"
         />
       </div>
     </div>

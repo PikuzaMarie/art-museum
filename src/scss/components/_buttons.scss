@@ -90,4 +90,14 @@
     height: a.rem(60);
     font-size: a.rem(16);
   }
+
+  &-close-modal {
+    align-self: flex-end;
+    width: a.rem(40);
+    height: a.rem(40);
+
+    img {
+      width: a.rem(16);
+    }
+  }
 }
