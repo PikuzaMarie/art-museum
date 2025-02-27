@@ -1,4 +1,2 @@
-export * from './artworks-context';
-export * from './artworks-context-provider';
-export * from './favorites-context';
-export * from './favorites-context-provider';
+export * from './contexts';
+export * from './providers';

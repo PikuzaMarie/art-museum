@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { Artwork } from '../types';
+import { Artwork } from '../../types';
 
 interface ArtworksContextProps {
   artworks: Artwork[];

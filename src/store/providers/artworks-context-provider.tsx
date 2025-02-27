@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useFetch } from '../hooks/useFetch';
-import { fetchAvailableArtworks } from '../api';
-import { ArtworksContext } from './artworks-context';
-import { sortArtworks } from '../utils/sortArtworks';
+import { useFetch } from '../../hooks/useFetch';
+import { fetchAvailableArtworks } from '../../api';
+import { ArtworksContext } from '../contexts';
+import { sortArtworks } from '../../utils/sortArtworks';
 
 interface ArtworksContextProviderProps {
   children: React.ReactNode;

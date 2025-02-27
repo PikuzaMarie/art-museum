@@ -1,5 +1,5 @@
-import { useFavorites } from '../hooks/useFavorites';
-import { FavoritesContext } from './favorites-context';
+import { useFavorites } from '../../hooks/useFavorites';
+import { FavoritesContext } from '../contexts';
 
 interface ArtworksContextProviderProps {
   children: React.ReactNode;
