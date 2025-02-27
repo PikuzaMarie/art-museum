@@ -1,50 +1,145 @@
-# React + TypeScript + Vite
+# Museum of Art
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Веб-сайт с отображением каталога произведений искусств на любой вкус!
 
-Currently, two official plugins are available:
+## Содержание
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. [Внешний вид](#внешний-вид)  
+   1.1 [Главная](#главная)  
+   1.2 [Страница просмотра картины](#страница-просмотра-картины)  
+   1.3 [Страница c избранными картинами](#страница-с-избранными-картинами)
+2. [Как запустить проект локально](#как-запустить-проект-локально)
+3. [Техническое задание](#техническое-задание)  
+   3.1 [Основные требования](#основные-требования)  
+   3.2 [Дополнительные требования](#дополнительные-требования)  
+   3.3 [Экраны](#экраны)  
+   3.4 [Дополнительно](#дополнительно)
+4. [Комментарии](#комментарии)
 
-## Expanding the ESLint configuration
+## Внешний вид
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Главная
 
-- Configure the top-level `parserOptions` property like this:
+Главная станица: пагинация по пяти картинам, поиск, сортировка картин
+![home-page.png](docs/gif/home-page.gif)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Страница просмотра картины
+
+Страница просмотра картины: просмотр детальной информации, увеличение картины при клике
+![artwork-page.png](docs/gif/artwork-page.gif)
+
+### Страница с избранными картинами
+
+Страница с избранными картинами: просмотр избранных картин, удаление из избранных
+![favorites-page.png](docs/gif/favorites-page.gif)
+
+## Как запустить проект локально
+
+#### 0. Необходимая подготовка:
+
+- Если у вас не установлен `Node.js`, установите [отсюда](https://nodejs.org/en/download) (используйте версию **20.18.0** или выше)
+
+- Проверьте версию `node`
+
+```bash
+node -v // Должно вывести "v20.18.0" или выше.
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- Проверьте версию `npm`
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+npm -v // Должно вывести "10.9.0" или выше.
 ```
+
+#### 1. Теперь склонируйте репозиторий проекта:
+
+```bash
+git clone https://github.com/PikuzaMarie/art-museum.git
+```
+
+#### 2. Перейдите в репозиторий:
+
+```bash
+cd art-museum
+```
+
+#### 3. Установите зависимости:
+
+```bash
+npm install
+```
+
+#### 4. Запустите ппроект:
+
+```bash
+npm run dev
+```
+
+будет загружен автоматически на http://localhost:3000/
+
+### Запуск тестов
+
+Сначала перейдите в [FavoriteButton](src/components/FavoriteButton/index.tsx), закомментируйте строку 4 и раскомментируйте строки после. Теперь можно запускать!
+
+```bash
+npm run test
+```
+
+Для запуска тестов и дополнительного вывода статистики покрытия выполните команду ниже:
+
+```bash
+npm run coverage
+```
+
+## Техническое задание
+
+### Основные требования
+
+- [x] Получение данных о картинах с внешнего [API](https://api.artic.edu/docs/#introduction) - реализовано;
+- [x] Отображение списка картин с возможностью пагинации - управление пагинацией реализовано в [HomePage](src/pages/HomePage/index.tsx), компонент пагинации [Pagination](src/components/Pagination/);
+- [x] Реализация формы поиска с валидацией введенных данных - реализовано в компоненте формы [SearchForm](src/components/SearchForm/index.tsx), функция для валидации [validationFunction](src/utils/validationFunctions/index.ts);
+- [x] Использование роутинга для разделения страниц приложения - реализовано, компонент роутера [Router](src/pages/router.tsx);
+- [x] Реализация дебаунса для поисковой формы - реализовано, хук [useDebounce](src/hooks/useDebounce.ts);
+- [x] Возможность добавления картины в список избранных с сохранением их в SessionStorage - реализовано, управление состоянием через хук [useFavorites](src/hooks/useFavorites.ts) и хранение состояния в контексте [FavoritesContext](src/store/providers/favorites-context-provider.tsx);
+- [x] Возможность просмотра более детальной информации о картине - реализовано, страница [ArtworkPage](src/pages/ArtworkPage/index.tsx);
+- [x] Интерфейс для просмотра списка избранных и возможности удаления из списка - просмотр избранных доступен на странице [FavoritesPage](src/pages/FavoritesPage/index.tsx) и добавление/удаление нажатием на [FavoriteButton](src/components/FavoriteButton/index.tsx);
+- [x] Реализация возможности сортировки картин по различным критериям - реализовано по названию картины или имени художника (возрастание/убывание), компонент сортировки [SortControls](src/components/SortControls/index.tsx)
+
+### Дополнительные требования
+
+- [x] При загрузке товаров необходимо реализовать Loader - реализовано в компоненте [Loader](src/components/Loader/index.tsx);
+- [x] Оптимизацию дизайна под мобильные устройства (до 420px) - реализована оптимизация для мобильных 320-425px;
+- [x] Реализацию burger-menu и кастомного хука при закрытии - кастомный хук [useDetectOutsideClick](src/hooks/useDetectOutsideClick.ts) и сайдбар [SideBar](src/components/Sidebar/index.tsx);
+- [x] Использовать React context по необходимости - использован для хранения состояния о загруженных картинах в [ArtworksContext](src/store/providers/artworks-context-provider.tsx) и избранных картинах в [FavoritesContext](src/store/providers/favorites-context-provider.tsx);
+- [x] Использование TypeScript для типизирования и уменьшения количества потенциальных багов - реализовано, общие типы описаны в [types](src/types/index.ts);
+- [x] Использование алиасов для импортирования файлов - реализовано;
+- [x] Покрытие тестами `40%` функциональности приложения - общее покрытие `~55%` [скриншот](docs/coverage/);
+- [x] Организацию файловой структуры react приложения. Ссылка на структуру: [Структура проекта](https://github.com/mkrivel/structure) - реализовано;
+- [x] Деплой приложения на платформу `GitHub Pages` или иные другие (`Netlify`, `Vercel`) - деплой на Netlify доступен по [ссылке](https://art-museum-by-marie.netlify.app/);
+- [x] Настройку конфигурации `eslint`, `prettier`, `husky` - реализовано;
+- [x] Использование корректного `GitFlow` в проекте - реализовано;
+- [x] Использование сторонних библиотек для стилей - запрещены, кроме рекомендуемых в пункте “Используемые технологии” - соблюдено.
+
+### Дополнительно
+
+- [x] Навигация на предыдущую страницу со страницы `ArtworkPage` при нажатии на кнопку `Back`
+- [x] При отсутствии избранных картин или конкретной картины на странице `ArtworkPage` отображается фолбэк контент со ссылкой на `HomePage`
+- [x] При увеличение изображения на `ArtworkPage` отображается также альтернативный текст
+
+## Комментарии
+
+- [x] **Реализация сортировки картин на клиенте**: поскольку сортировка с сервера доступна только по полю даты добавления и требует дополнительных поисковых запросов для сортировки по другим критериям, была реализована сортировка на клиентской стороне. Пользователи могут сортировать картины по названию или имени художника (по возрастанию/убыванию) без необходимости дополнительных запросов к серверу.
+- [x] **Оганичение пагинации**: пагинация рассчитана на 20 страниц по 5 картин на каждой, поскольку API ограничивает максимальное количество картин в одном запросе до 100. Так как сортировка на клиенте, динамическая загрузка данных не самое хорошее решение (изменения коснутся всех работ сразу, а не только подгруженных => предыдущие загруженные картины окажутся на других страницах).
+- [x] **Незагруженные картины**: не все картины загружаются по ссылке, предусмотренной API для этого. Для каждой картины предусмотрен альтернативный текст, который отображается вместо изображения.
+
+## Используемые технологии
+
+- **_node.js_** - программная платформа, основанная на движке V8 (транслирующем JavaScript в машинный код);
+- **_eslint_** - линтер для JavaScript кода;
+- **_prettier_** - инструмент для автоформатирования кода;
+- **_react_** - JavaScript-библиотека для создания пользовательских интерфейсов;
+- **_typescript_** - строго типизированный язык для уменьшения количества потенциальных багов;
+- **_vite_** - инструмент сборки;
+- **_SCSS_** - препроцессор, который служит для быстрого написания CSS стилей;
+- **_jest_** - библиотека для unit-тестирования;
+- **_react-router-dom_** - библиотека для навигации между разными частями веб-приложения;
