@@ -4,6 +4,7 @@ import { Artwork } from '../../types';
 import bookmarkIcon from '../../assets/icons/bookmark-icon.svg';
 // //uncomment to run tests for ArtworkCard and FavoriteButton
 // const bookmarkIcon: string =
+//   // eslint-disable-next-line @typescript-eslint/no-require-imports
 //   require('../../assets/icons/bookmark-icon.svg').default;
 
 interface FavoriteButtonProps {
