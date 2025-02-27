@@ -5,6 +5,14 @@ interface UseFetchProps {
   fetchFn: () => Promise<ArtworksResponse>;
 }
 
+/**
+ * Custom hook that manages the fetching of artworks
+ *
+ * @param {Object} props - properties
+ * @param {Function} props.fetchFn - function to fetch artworks
+ *
+ * @returns {Object} - state and functions for managing the fetch process
+ */
 export function useFetch({ fetchFn }: UseFetchProps) {
   const [artworks, setArtworks] = useState<Artwork[]>([]);
   const [isFetching, setIsFetching] = useState<boolean>(false);
