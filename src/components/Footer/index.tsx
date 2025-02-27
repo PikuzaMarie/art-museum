@@ -12,7 +12,7 @@ const FooterComponent: React.FC = () => {
           </a>
           <small>Maryia Pikuza, 2025</small>
         </div>
-        <a href="https://www.modsen-software.com/">
+        <a href="https://www.modsen-software.com/" target="_blank">
           <img src={modsenLogo} alt="Modsen logo" />
         </a>
       </div>
