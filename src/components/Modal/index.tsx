@@ -1,3 +1,4 @@
+import { createPortal } from 'react-dom';
 import clearIcon from '../../assets/icons/clear-icon.svg';
 
 interface ModalProps {
@@ -7,7 +8,9 @@ interface ModalProps {
 }
 
 export const Modal: React.FC<ModalProps> = ({ imageId, altText, onClose }) => {
-  return (
+  const modalRoot = document.getElementById('modal-root');
+
+  return createPortal(
     <div onClick={onClose} className="modal__overlay">
       <div className="modal__header">
         <p className="modal__alt-text">{altText}</p>
@@ -22,6 +25,7 @@ export const Modal: React.FC<ModalProps> = ({ imageId, altText, onClose }) => {
           className="modal__image"
         />
       </div>
-    </div>
+    </div>,
+    modalRoot as Element,
   );
 };
