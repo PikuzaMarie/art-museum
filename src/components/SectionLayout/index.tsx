@@ -5,6 +5,7 @@ interface SectionProps {
   title: string;
   subtitle: string;
 }
+
 export const SectionLayout: React.FC<SectionProps> = ({
   children,
   title,
