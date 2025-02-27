@@ -9,6 +9,12 @@ import {
 } from '../constants';
 import { ArtworksResponse, SearchResponse } from '../types';
 
+/**
+ * The function fetches available artworks
+ *
+ * @returns {Promise<ArtworksResponse>} - a promise that resolves to the response
+ * containing the available artworks
+ */
 export async function fetchAvailableArtworks() {
   const url = buildURL({
     endpoint: ARTWORKS_ENDPOINT,
@@ -22,6 +28,14 @@ export async function fetchAvailableArtworks() {
   return fetchData<ArtworksResponse>(url);
 }
 
+/**
+ * The function fetches search results for artworks based on the search term provided
+ *
+ * @param searchTerm - the term to search for artworks
+ *
+ * @returns {Promise<ArtworksResponse>} - a promise that resolves to the response
+ * containing the artworks data
+ */
 export async function fetchSearchResults(searchTerm: string) {
   const searchURL = buildURL({
     endpoint: ARTWORKS_SEARCH_ENDPOINT,

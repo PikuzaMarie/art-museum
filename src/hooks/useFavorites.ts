@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Artwork } from '../types';
 
+/**
+ * Custom hook that manages state of favorite artworks stored in sessionStorage
+ *
+ * @returns {Object} - functions and state for managing favorite artworks
+ */
 export function useFavorites() {
   const [favoriteArtworks, setFavoriteItems] = useState<Artwork[]>([]);
 

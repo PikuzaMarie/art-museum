@@ -1,5 +1,13 @@
 import { Artwork } from '../../types';
 
+/**
+ * The function sorts artworks based on the specified criteria
+ *
+ * @param {Array} data - array of artworks
+ * @param {string} criteria - sorting criteria
+ *
+ * @returns {Array} - sorted array of artworks
+ */
 export const sortArtworks = (data: Artwork[], criteria: string) => {
   const dataToSort = [...data];
 
