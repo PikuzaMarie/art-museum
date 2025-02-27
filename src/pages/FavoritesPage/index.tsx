@@ -17,7 +17,7 @@ export const FavoritesPage: React.FC = () => {
           <span className="title__icon">
             <img src={bookmarkIcon} alt="Bookmark icon" />
           </span>
-          <span className="title title_accent">favourites</span>
+          <span className="title title_accent">favorites</span>
         </span>
       </h1>
       {favoriteArtworks.length !== 0 ? (
