@@ -1,7 +1,7 @@
 import { HomePage } from './HomePage';
-import { RouterType } from '../types';
 import { ArtworkPage } from './ArtworkPage';
 import { FavoritesPage } from './FavoritesPage';
+import { RouterType } from '../types';
 
 export const pagesData: RouterType[] = [
   { path: '', element: <HomePage />, title: 'home' },

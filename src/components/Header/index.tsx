@@ -1,11 +1,11 @@
 import { memo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDetectOutsideClick } from '../../hooks/useDetectOutsideClick';
 import { Sidebar } from '../Sidebar';
 import museumLogoLight from '../../assets/logos/museum-logo-light.svg';
 import homeIcon from '../../assets/icons/home-icon.svg';
 import bookmarkIcon from '../../assets/icons/bookmark-light-orange-icon.svg';
 import burgerIcon from '../../assets/icons/burger-icon.svg';
-import { useDetectOutsideClick } from '../../hooks/useDetectOutsideClick';
 
 interface HeaderProps {
   isHomePage: boolean;

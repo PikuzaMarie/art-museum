@@ -1,11 +1,11 @@
 import { useCallback, useContext } from 'react';
-import { useLocation, useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { ArtworksContext } from '../../store';
 import { PageLayout } from '../../components/PageLayout';
 import { SectionLayout } from '../../components/SectionLayout';
 import { Loader } from '../../components/Loader';
 import { Pagination } from '../../components/Pagination';
 import { ArtworkCard } from '../../components/ArtworkCard';
-import { ArtworksContext } from '../../store';
 import { SortControls } from '../../components/SortControls';
 import { SearchForm } from '../../components/SearchForm';
 

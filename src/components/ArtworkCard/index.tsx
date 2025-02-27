@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Artwork } from '../../types';
 import { FavoriteButton } from '../FavoriteButton';
+import { Artwork } from '../../types';
 
 interface ArtworkCardProps {
   artwork: Artwork;

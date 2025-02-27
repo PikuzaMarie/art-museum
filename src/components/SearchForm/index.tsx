@@ -1,10 +1,9 @@
 import { useState, useEffect, useContext, useCallback } from 'react';
 import { useDebounce } from '../../hooks/useDebounce';
+import { ArtworksContext } from '../../store';
 import { fetchSearchResults } from '../../api';
 import { validateInput } from '../../utils/validationFunctions';
 import searchIcon from '../../assets/icons/search-icon.svg';
-
-import { ArtworksContext } from '../../store';
 
 export const SearchForm: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');

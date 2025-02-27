@@ -1,9 +1,8 @@
 import { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { FavoriteButton } from '../../components/FavoriteButton';
-import { PageLayout } from '../../components/PageLayout';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ArtworksContext, FavoritesContext } from '../../store';
-import { useParams } from 'react-router';
+import { PageLayout } from '../../components/PageLayout';
+import { FavoriteButton } from '../../components/FavoriteButton';
 import { Modal } from '../../components/Modal';
 
 export const ArtworkPage: React.FC = () => {

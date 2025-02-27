@@ -2,9 +2,9 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FavoritesContext } from '../../store';
 import { PageLayout } from '../../components/PageLayout';
-import bookmarkIcon from '../../assets/icons/bookmark-icon.svg';
 import { SectionLayout } from '../../components/SectionLayout';
 import { ArtworkCard } from '../../components/ArtworkCard';
+import bookmarkIcon from '../../assets/icons/bookmark-icon.svg';
 
 export const FavoritesPage: React.FC = () => {
   const { favoriteArtworks } = useContext(FavoritesContext);

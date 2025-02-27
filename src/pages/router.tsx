@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
-import { RouterType } from '../types';
 import { pagesData } from './pagesData';
+import { RouterType } from '../types';
 
 export const Router = () => {
   const pagesRoutes = pagesData.map(({ path, element, title }: RouterType) => {
