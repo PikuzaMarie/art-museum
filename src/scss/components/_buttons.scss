@@ -47,8 +47,8 @@
     height: a.rem(60);
 
     &:hover {
-      background-color: transparent;
-      border-color: inherit;
+      background-color: a.$color-button-backgorund;
+      border-color: a.$color-button-backgorund;
     }
 
     &.active {
