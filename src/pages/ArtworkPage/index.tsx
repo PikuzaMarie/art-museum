@@ -1,14 +1,17 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FavoriteButton } from '../../components/FavoriteButton';
 import { PageLayout } from '../../components/PageLayout';
 import { ArtworksContext, FavoritesContext } from '../../store';
 import { useParams } from 'react-router';
+import { Modal } from '../../components/Modal';
 
 export const ArtworkPage: React.FC = () => {
   const { id } = useParams();
   const { artworks } = useContext(ArtworksContext);
   const { favoriteArtworks } = useContext(FavoritesContext);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navigate = useNavigate();
 
@@ -16,8 +19,23 @@ export const ArtworkPage: React.FC = () => {
     artworks.find(item => item.id === Number(id)) ||
     favoriteArtworks.find(item => item.id === Number(id));
 
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <PageLayout isHomePage={false} className="artwork-page">
+      {isModalOpen && currentArtwork?.image_id && (
+        <Modal
+          imageId={currentArtwork?.image_id}
+          altText={currentArtwork.thumbnail?.alt_text ?? currentArtwork.title}
+          onClose={handleCloseModal}
+        />
+      )}
       {currentArtwork ? (
         <div className="artwork-container">
           <button
@@ -31,6 +49,7 @@ export const ArtworkPage: React.FC = () => {
               <img
                 src={`https://www.artic.edu/iiif/2/${currentArtwork.image_id}/full/843,/0/default.jpg`}
                 alt={currentArtwork.thumbnail?.alt_text ?? currentArtwork.title}
+                onClick={handleOpenModal}
                 className="artwork-details__image"
               />
               <div className="artwork-details__button">
