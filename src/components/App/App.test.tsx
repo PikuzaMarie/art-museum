@@ -4,10 +4,6 @@ import { ArtworksContextProvider } from '../../store';
 import { FavoritesContextProvider } from '../../store';
 import App from './App';
 
-jest.mock('react-hot-toast', () => ({
-  Toaster: () => <div data-testid="toaster" />,
-}));
-
 jest.mock('../../pages/router', () => ({
   Router: () => <div data-testid="router" />,
 }));
@@ -23,6 +19,5 @@ describe('App component', () => {
     );
 
     expect(screen.getByTestId('router')).toBeInTheDocument();
-    expect(screen.getByTestId('toaster')).toBeInTheDocument();
   });
 });
