@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FavoriteButton } from '../FavoriteButton';
 import { Artwork } from '../../types';
+import { ROUTES } from '../../constants';
 
 interface ArtworkCardProps {
   artwork: Artwork;
@@ -27,7 +28,7 @@ export const ArtworkCard: React.FC<ArtworkCardProps> = ({
 
     window.scrollTo(0, 0);
     navigate({
-      pathname: `/artwork/${artworkId}`,
+      pathname: `${ROUTES.artwork.replace(':id', String(artworkId))}`,
       search: updatedSearchParams.toString(),
     });
   };

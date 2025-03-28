@@ -1,11 +1,12 @@
 import { useContext, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { ArtworksContext, FavoritesContext } from '../../store';
 import { PageLayout } from '../../components/PageLayout';
 import { FavoriteButton } from '../../components/FavoriteButton';
 import { Modal } from '../../components/Modal';
 import { FallbackContent } from '../../components/FallbackContent';
 import { LINK_TO_HOME_PAGE } from '../../constants';
+import { Link } from 'react-router-dom';
 
 export const ArtworkPage: React.FC = () => {
   const { id } = useParams();
@@ -13,8 +14,6 @@ export const ArtworkPage: React.FC = () => {
   const { favoriteArtworks } = useContext(FavoritesContext);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const navigate = useNavigate();
 
   const currentArtwork =
     artworks.find(item => item.id === Number(id)) ||
@@ -39,12 +38,9 @@ export const ArtworkPage: React.FC = () => {
       )}
       {currentArtwork ? (
         <div className="artwork-container">
-          <button
-            onClick={() => navigate(-1)}
-            className="button button-navigate"
-          >
+          <Link to="../.." relative="path" className="button button-navigate">
             Back
-          </button>
+          </Link>
           <article className="artwork-details">
             <div className="artwork-details__image-container">
               <img
