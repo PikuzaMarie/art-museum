@@ -25,9 +25,15 @@ export const HAS_LETTERS_OR_NUMBERS_ERROR_VALUE = [
   'Input should include letters or numbers',
 ];
 
+export const ROUTES = {
+  home: '/',
+  favorites: '/favorites',
+  artwork: '/artwork/:id',
+};
+
 export const LINK_TO_HOME_PAGE = {
   linkName: 'Go to Home Page',
-  linkPath: '/',
+  linkPath: ROUTES.home,
 };
 
 //Mock data for tests

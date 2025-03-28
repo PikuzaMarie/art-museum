@@ -1,15 +1,13 @@
-import { BrowserRouter } from 'react-router-dom';
-import { Router } from '../../pages/router';
 import { ArtworksContextProvider } from '../../store';
 import { FavoritesContextProvider } from '../../store';
+import { routes } from '../../pages/pagesData';
+import { RouterProvider } from 'react-router-dom';
 
 function App() {
   return (
     <ArtworksContextProvider>
       <FavoritesContextProvider>
-        <BrowserRouter>
-          <Router />
-        </BrowserRouter>
+        <RouterProvider router={routes} />
       </FavoritesContextProvider>
     </ArtworksContextProvider>
   );
