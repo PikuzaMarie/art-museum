@@ -1,0 +1,8 @@
+@use '../abstracts/' as a;
+
+.not-found {
+  @include a.flex-container(
+    $direction: column,
+    $gap: var(--base-vertical-flow)
+  );
+}
