@@ -25,6 +25,11 @@ export const HAS_LETTERS_OR_NUMBERS_ERROR_VALUE = [
   'Input should include letters or numbers',
 ];
 
+export const LINK_TO_HOME_PAGE = {
+  linkName: 'Go to Home Page',
+  linkPath: '/',
+};
+
 //Mock data for tests
 export const MOCK_URL = new URL('https://example.com/api/v1/data');
 export const MOCK_DATA = { data: 'mock data' };

@@ -1,10 +1,11 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import { FavoritesContext } from '../../store';
 import { PageLayout } from '../../components/PageLayout';
 import { SectionLayout } from '../../components/SectionLayout';
 import { ArtworkCard } from '../../components/ArtworkCard';
 import bookmarkIcon from '../../assets/icons/bookmark-icon.svg';
+import { FallbackContent } from '../../components/FallbackContent';
+import { LINK_TO_HOME_PAGE } from '../../constants';
 
 export const FavoritesPage: React.FC = () => {
   const { favoriteArtworks } = useContext(FavoritesContext);
@@ -29,12 +30,11 @@ export const FavoritesPage: React.FC = () => {
           </div>
         </SectionLayout>
       ) : (
-        <div className="wrapper__fallback-content">
-          <p>You haven't saved any artworks yet.</p>
+        <FallbackContent link={LINK_TO_HOME_PAGE}>
           <p>
-            Explore artworks at <Link to={`/`}>homepage</Link>
+            You haven't saved any artworks yet. Explore artworks on home page
           </p>
-        </div>
+        </FallbackContent>
       )}
     </PageLayout>
   );

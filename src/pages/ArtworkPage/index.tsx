@@ -1,9 +1,11 @@
 import { useContext, useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { ArtworksContext, FavoritesContext } from '../../store';
 import { PageLayout } from '../../components/PageLayout';
 import { FavoriteButton } from '../../components/FavoriteButton';
 import { Modal } from '../../components/Modal';
+import { FallbackContent } from '../../components/FallbackContent';
+import { LINK_TO_HOME_PAGE } from '../../constants';
 
 export const ArtworkPage: React.FC = () => {
   const { id } = useParams();
@@ -103,12 +105,11 @@ export const ArtworkPage: React.FC = () => {
           </article>
         </div>
       ) : (
-        <div className="wrapper__fallback-content">
-          <p>Artwork not found!</p>
+        <FallbackContent link={LINK_TO_HOME_PAGE}>
           <p>
-            But don't worry, find another one on <Link to={`/`}>homepage</Link>
+            Artwork not found! But don't worry, find another one on home page
           </p>
-        </div>
+        </FallbackContent>
       )}
     </PageLayout>
   );
