@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { ArtworksContext, FavoritesContext } from '../../store';
 import { PageLayout } from '../../components/PageLayout';
 import { FavoriteButton } from '../../components/FavoriteButton';
@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 
 export const ArtworkPage: React.FC = () => {
   const { id } = useParams();
+  const [searchParams] = useSearchParams();
   const { artworks } = useContext(ArtworksContext);
   const { favoriteArtworks } = useContext(FavoritesContext);
 
@@ -38,7 +39,11 @@ export const ArtworkPage: React.FC = () => {
       )}
       {currentArtwork ? (
         <div className="artwork-container">
-          <Link to="../.." relative="path" className="button button-navigate">
+          <Link
+            to={`../..?${searchParams}`}
+            relative="path"
+            className="button button-navigate"
+          >
             Back
           </Link>
           <article className="artwork-details">
