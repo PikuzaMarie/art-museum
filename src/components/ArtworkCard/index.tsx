@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FavoriteButton } from '../FavoriteButton';
 import { Artwork } from '../../types';
+import { ROUTES } from '../../constants';
 
 interface ArtworkCardProps {
   artwork: Artwork;
@@ -27,7 +28,7 @@ export const ArtworkCard: React.FC<ArtworkCardProps> = ({
 
     window.scrollTo(0, 0);
     navigate({
-      pathname: `/artwork/${artworkId}`,
+      pathname: `${ROUTES.artwork.replace(':id', String(artworkId))}`,
       search: updatedSearchParams.toString(),
     });
   };
@@ -39,6 +40,10 @@ export const ArtworkCard: React.FC<ArtworkCardProps> = ({
           <img
             src={`https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg`}
             alt={artwork.thumbnail?.alt_text ?? artwork.title}
+            onError={e => {
+              e.currentTarget.src =
+                'https://placehold.co/843/f7d5a2/383838?text=no-image&font=lato';
+            }}
             className="artwork__image"
             data-testid="image"
           />

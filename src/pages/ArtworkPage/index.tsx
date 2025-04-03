@@ -1,18 +1,20 @@
 import { useContext, useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { ArtworksContext, FavoritesContext } from '../../store';
 import { PageLayout } from '../../components/PageLayout';
 import { FavoriteButton } from '../../components/FavoriteButton';
 import { Modal } from '../../components/Modal';
+import { FallbackContent } from '../../components/FallbackContent';
+import { LINK_TO_HOME_PAGE } from '../../constants';
+import { Link } from 'react-router-dom';
 
 export const ArtworkPage: React.FC = () => {
   const { id } = useParams();
+  const [searchParams] = useSearchParams();
   const { artworks } = useContext(ArtworksContext);
   const { favoriteArtworks } = useContext(FavoritesContext);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const navigate = useNavigate();
 
   const currentArtwork =
     artworks.find(item => item.id === Number(id)) ||
@@ -37,18 +39,23 @@ export const ArtworkPage: React.FC = () => {
       )}
       {currentArtwork ? (
         <div className="artwork-container">
-          <button
-            onClick={() => navigate(-1)}
+          <Link
+            to={`../..?${searchParams}`}
+            relative="path"
             className="button button-navigate"
           >
             Back
-          </button>
+          </Link>
           <article className="artwork-details">
             <div className="artwork-details__image-container">
               <img
                 src={`https://www.artic.edu/iiif/2/${currentArtwork.image_id}/full/843,/0/default.jpg`}
                 alt={currentArtwork.thumbnail?.alt_text ?? currentArtwork.title}
                 onClick={handleOpenModal}
+                onError={e => {
+                  e.currentTarget.src =
+                    'https://placehold.co/843/f7d5a2/383838?text=no-image&font=lato';
+                }}
                 className="artwork-details__image"
               />
               <div className="artwork-details__button">
@@ -103,12 +110,11 @@ export const ArtworkPage: React.FC = () => {
           </article>
         </div>
       ) : (
-        <div className="wrapper__fallback-content">
-          <p>Artwork not found!</p>
+        <FallbackContent link={LINK_TO_HOME_PAGE}>
           <p>
-            But don't worry, find another one on <Link to={`/`}>homepage</Link>
+            Artwork not found! But don't worry, find another one on home page
           </p>
-        </div>
+        </FallbackContent>
       )}
     </PageLayout>
   );
