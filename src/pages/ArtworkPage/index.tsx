@@ -47,6 +47,10 @@ export const ArtworkPage: React.FC = () => {
                 src={`https://www.artic.edu/iiif/2/${currentArtwork.image_id}/full/843,/0/default.jpg`}
                 alt={currentArtwork.thumbnail?.alt_text ?? currentArtwork.title}
                 onClick={handleOpenModal}
+                onError={e => {
+                  e.currentTarget.src =
+                    'https://placehold.co/843/f7d5a2/383838?text=no-image&font=lato';
+                }}
                 className="artwork-details__image"
               />
               <div className="artwork-details__button">

@@ -40,6 +40,10 @@ export const ArtworkCard: React.FC<ArtworkCardProps> = ({
           <img
             src={`https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg`}
             alt={artwork.thumbnail?.alt_text ?? artwork.title}
+            onError={e => {
+              e.currentTarget.src =
+                'https://placehold.co/843/f7d5a2/383838?text=no-image&font=lato';
+            }}
             className="artwork__image"
             data-testid="image"
           />
